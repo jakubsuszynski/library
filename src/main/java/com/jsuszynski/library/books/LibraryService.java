@@ -14,8 +14,8 @@ import static java.util.stream.Collectors.groupingBy;
 public class LibraryService {
 
     private static final String WRONG_PARAMS = "Niepoprawne parametry";
-    private final BookRepository bookRepository = new BookRepository();
 
+    private final BookRepository bookRepository = BookRepository.getInstance();
     private final ArgumentInterpreter argumentInterpreter = new ArgumentInterpreter();
     private final ArgumentsValidator argumentsValidator = new ArgumentsValidator();
 

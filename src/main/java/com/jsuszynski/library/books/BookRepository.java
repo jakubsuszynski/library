@@ -8,7 +8,24 @@ import java.util.stream.Collectors;
 public class BookRepository {
 
 
-    List<Book> books = new ArrayList<>();
+    private List<Book> books = new ArrayList<>();
+    private static BookRepository instance;
+
+
+
+    private BookRepository() {
+    }
+
+    public static BookRepository getInstance() {
+        if (instance == null) {
+            synchronized (BookRepository.class) {
+                if (instance == null) {
+                    instance = new BookRepository();
+                }
+            }
+        }
+        return instance;
+    }
 
     public void addBook(Book book) {
         books.add(book);

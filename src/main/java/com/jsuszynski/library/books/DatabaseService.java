@@ -11,7 +11,9 @@ public class DatabaseService {
     private static final String SPACING = "Wyrazy parametrów oddzielaj myślnikiem.";
     public static final String ADDING_PARAMS = "Podaj parametry w formacie: -T<tytul> -A<autor> -I<ISBN>. ";
     public static final String DELETING_PARAMS = "Podaj parametr w formacie: -T<tytul> lub -I<ISBN>. ";
-    private final BookRepository bookRepository = new BookRepository();
+
+
+    private final BookRepository bookRepository = BookRepository.getInstance();
     private final ArgumentInterpreter argumentInterpreter = new ArgumentInterpreter();
     private final ArgumentsValidator argumentsValidator = new ArgumentsValidator();
 
