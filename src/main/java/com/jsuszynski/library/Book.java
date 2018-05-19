@@ -77,9 +77,25 @@ public class Book {
 
     @Override
     public String toString() {
+
+        String state = "Dostępna";
+        String lastLending = this.lastLending.toString();
+        String lastReader = this.lastReader;
+
+        if (this.state)
+            state = "Wypożyczona";
+
+        if (this.lastLending.equals(LocalDate.EPOCH))
+            lastLending = "Książka nigdy nie wypożyczona";
+
+        if (lastReader == null)
+            lastReader = "Brak ostatniego czytelnika";
+
+
         return "Tytuł: " + title +
                 "\nAutor: " + author +
                 "\nISBN: " + isbn +
+                "\nStatus: " + state +
                 "\nOstatnie wypożyczenie: " + lastLending +
                 "\nOstatni czytelnik: " + lastReader;
     }
@@ -91,7 +107,8 @@ public class Book {
 
 
     }
-    public void returnBook(){
+
+    public void returnBook() {
         this.state = false;
     }
 }

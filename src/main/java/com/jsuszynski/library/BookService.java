@@ -2,8 +2,12 @@ package com.jsuszynski.library;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.counting;
+import static java.util.stream.Collectors.groupingBy;
 
 public class BookService {
 
@@ -12,114 +16,120 @@ public class BookService {
     private final IsbnValidator isbnValidator = new IsbnValidator();
 
     public void addBook() {
+        System.out.println("Podaj parametry w formacie: -T<tytul> -A<autor> -I<ISBN> ");
 
-        System.out.println("Podaj tytul książki: ");
-        String title = scanner.nextLine();
-        System.out.println("Podaj autora książki: ");
-        String author = scanner.nextLine();
-        System.out.println("Podaj ISBN książki: ");
-        String isbn = getIsbn();
-        Book book = new BookBuilder()
-                .withTitle(title)
-                .withAuthor(author)
-                .withIsbn(isbn)
-                .build();
-        bookRepository.addBook(book);
+        String input = scanner.nextLine();
+        String[] params = input.split(" ");
+        BookBuilder book = new BookBuilder();
+        for (String param : params) {
+            if (param.startsWith("-T")) {
+                book.withTitle(param.substring(2));
+            } else if (param.startsWith("-A")) {
+                book.withAuthor(param.substring(2));
+            } else if (param.startsWith("-I")) {
+                if (isbnValidator.isValid(param.substring(2)))
+                    book.withIsbn(param.substring(2));
+            } else {
+                throw new RuntimeException("Niepoprawne lub niewystarczające parametry");
+            }
+        }
+        bookRepository.addBook(book.build());
+
 
     }
 
     public void deleteBook() {
-        System.out.println("1. Usun po ISBN " +
-                "\n2. Usuń po tytule");
-        String choice = scanner.nextLine();
+        System.out.println("Podaj parametr w formacie: -T<tytul> lub -I<ISBN> ");
+        String param = scanner.nextLine();
 
-        switch (choice) {
-
-            case "1":
-                String isbn = getIsbn();
-                bookRepository.removeBook(findByIsbn(isbn));
-                break;
-
-            case "2":
-                System.out.println("Podaj tytuł");
-                bookRepository.removeBook(findByTitle(scanner.nextLine()));
-                break;
-
+        if (param.startsWith("-T")) {
+            bookRepository.removeBook(bookRepository.findByTitle(scanner.nextLine()));
+        } else if (param.startsWith("-I")) {
+            if (isbnValidator.isValid(param.substring(2)))
+                bookRepository.removeBook(bookRepository.findByIsbn(param.substring(2)));
+        } else {
+            throw new RuntimeException("Niepoprawny parametr");
         }
     }
 
     public void findBook() {
-        System.out.println("1. Znajdź po ISBN " +
-                "\n2. Znajdź po tytule" +
-                "\n3. Znajdź po autorze");
+        System.out.println("Podaj parametr w formacie: -T<tytul>, -I<ISBN> lub -A<autor>");
+        String param = scanner.nextLine();
 
-        String choice = scanner.nextLine();
 
-        switch (choice) {
-
-            case "1":
-                System.out.println("Podaj ISBN: ");
-                String isbn = getIsbn();
-                System.out.println(findByIsbn(isbn));
-                break;
-            case "2":
-                System.out.println("Podaj tytuł: ");
-
-                System.out.println(findByTitle(scanner.nextLine()));
-                break;
-            case "3":
-                System.out.println("Podaj autora: ");
-                for (Book ksiazka : findByAuthor(scanner.nextLine())) {
-                    System.out.println(ksiazka);
-                }
-                break;
+        if (param.startsWith("-T")) {
+            System.out.println(bookRepository.findByTitle(param.substring(2)));
+        } else if (param.startsWith("-I")) {
+            System.out.println(bookRepository.findByIsbn(param.substring(2)));
+        } else if (param.startsWith("-A")) {
+            for (Book book : bookRepository.findByAuthor(param.substring(2))) {
+                System.out.println(book);
+            }
+        } else {
+            throw new RuntimeException("Niepoprawny parametr");
         }
+
     }
 
-    public void findBooksNotLentLately(){
+    public void findBooksNotLentLately() {
         System.out.println("Podaj ilość tygodni: ");
         int weeks = scanner.nextInt();
-        System.out.println("Książki niewypożyczone od " + weeks + "tygodni:");
-        for (Book ksiazka : notLent(weeks)) {
-            System.out.println(ksiazka);
+
+        for (Book book : notLent(weeks)) {
+            System.out.println(book);
         }
     }
 
-    private Book findByIsbn(String isbn) {
-
-        return bookRepository.findByIsbn(isbn).orElseThrow(() -> new RuntimeException("No book found"));
+    public void lendBook() {
+        System.out.println("Podaj parametry w formacie: -W<imie i nazwisko wypożyczającego> i -T<tytul> lub -I<ISBN>");
+        String[] params = scanner.nextLine().split(" ");
+        Book book = null;
+        String reader = "";
+        for (String param : params) {
+            if (param.startsWith("-T")) {
+                book = bookRepository.findByTitle(param.substring(2));
+            } else if (param.startsWith("-I")) {
+                book = bookRepository.findByIsbn(param.substring(2));
+            } else if (param.startsWith("-W")) {
+                reader = param.substring(2);
+            } else
+                throw new RuntimeException("Niepoprawny parametr");
+        }
+        book.lendBook(reader);
     }
 
-    private Book findByTitle(String title) {
-        return bookRepository.findByTitle(title).orElseThrow(() -> new RuntimeException("No book found"));
+
+    public void returnBook() {
+        System.out.println("Podaj parametr w formacie: -T<tytul> lub -I<ISBN>");
+        String param = scanner.nextLine();
+
+        if (param.startsWith("-T")) {
+            bookRepository.findByTitle(param.substring(2)).returnBook();
+        } else if (param.startsWith("-I")) {
+            bookRepository.findByIsbn(param.substring(2)).returnBook();
+        } else {
+            throw new RuntimeException("Niepoprawny parametr");
+        }
     }
 
-    private List<Book> findByAuthor(String author) {
-        return bookRepository.findByAuthor(author);
+    public void returnReaders() {
+
+
+        Map<String, Long> readers = bookRepository.getAllBooks().stream()
+                .filter(Book::getState)
+                .collect(groupingBy(Book::getLastReader, counting()));
+
+
+        for (Map.Entry<String, Long> reader : readers.entrySet())
+            System.out.println(reader.getKey() + ": " + reader.getValue() + " książek");
     }
 
     public List<Book> notLent(int weeks) {
-        return bookRepository.returnAllBooks().stream()
-                .filter(s -> s.getLastLending()
-                        .isBefore(LocalDate.now()
-                                .minusWeeks(weeks)))
+        return bookRepository.getAllBooks().stream()
+                .filter(s -> s.getLastLending().isBefore(LocalDate.now().minusWeeks(weeks)))
                 .collect(Collectors.toList());
     }
 
-    public List<String> returnReaders() {
-        return bookRepository.returnAllBooks().stream().filter(Book::getState).map(Book::getLastReader).collect(Collectors.toList());
-    }
-
-    private String getIsbn() {
-        String isbn;
-        while (true) {
-            isbn = scanner.nextLine();
-            if (isbnValidator.isValid(isbn))
-                break;
-            System.out.println("ISBN niepoprawny. Musi składać się z 13 lub 10 cyfr");
-        }
-        return isbn;
-    }
 
 
 }
