@@ -1,23 +1,30 @@
 package com.jsuszynski.library.arguments;
 
 import com.jsuszynski.library.books.IsbnValidator;
+import com.jsuszynski.library.console.UserInputReader;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
 
 public class ArgumentInterpreter {
 
-    private final Scanner scanner = new Scanner(System.in);
+    private static final String TOO_SHORT = "Tytul lub autor za krótki";
     private final IsbnValidator isbnValidator = new IsbnValidator();
+    private final UserInputReader userInputReader = new UserInputReader();
+    private final ArgumentsValidator argumentsValidator = new ArgumentsValidator();
 
     public Map<String, String> parseArguments() {
-
-        String[] arguments = askForArguments().split(" ");
+        String[] arguments = userInputReader.getUserInput().split(" ");
         Map<String, String> args = new HashMap<>();
+
         for (String argument : arguments) {
+
             if (argument.startsWith("-I"))
                 isbnValidator.isValid(argument.substring(2));
+
+            else if ((argumentsValidator.isLongEnogh(argument))) {
+                throw new RuntimeException(TOO_SHORT);
+            }
             args.put(argument.substring(0, 2), argument.substring(2));
         }
 
@@ -25,7 +32,4 @@ public class ArgumentInterpreter {
 
     }
 
-    private String askForArguments() {
-        return scanner.nextLine();
-    }
 }

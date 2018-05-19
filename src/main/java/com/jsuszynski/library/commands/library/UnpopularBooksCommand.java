@@ -11,14 +11,20 @@ public class UnpopularBooksCommand extends Command {
 
     @Override
     public void execute() {
+
         System.out.println("Podaj ilość tygodni: ");
         try {
             Integer weeks = Integer.valueOf(userInputReader.getUserInput());
-            for (Book book : libraryService.findUnpopularBooks(weeks)) {
-                System.out.println(book);
-            }
+            booksPrinter(weeks);
+
         } catch (Exception e) {
             throw new RuntimeException(NOT_INTEGER);
+        }
+    }
+
+    private void booksPrinter(Integer weeks) {
+        for (Book book : libraryService.findUnpopularBooks(weeks)) {
+            System.out.println(book);
         }
     }
 }

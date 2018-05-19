@@ -1,7 +1,5 @@
 package com.jsuszynski.library.commands.library;
 
-import com.jsuszynski.library.arguments.ArgumentInterpreter;
-import com.jsuszynski.library.arguments.ArgumentsValidator;
 import com.jsuszynski.library.books.Book;
 import com.jsuszynski.library.commands.Command;
 
@@ -24,13 +22,25 @@ public class FindBookCommand extends Command {
             throw new RuntimeException(WRONG_PARAMS);
         }
         if (args.containsKey("-T")) {
-            System.out.println(libraryService.findBookByTitle(args.get("-T")));
+            byTitlePrinter(args);
         } else if (args.containsKey("-I")) {
-            System.out.println(libraryService.findBookByIsbn(args.get("-I")));
-        } else if (args.containsKey("-A")) {
-            for (Book book : libraryService.findBooksByAuthor(args.get("-A"))) {
-                System.out.println(book);
-            }
+            byIsbnPrinter(args);
+        } else {
+            booksPrinter(args);
+        }
+    }
+
+    private void byIsbnPrinter(Map<String, String> args) {
+        System.out.println(libraryService.findBookByIsbn(args.get("-I")));
+    }
+
+    private void byTitlePrinter(Map<String, String> args) {
+        System.out.println(libraryService.findBookByTitle(args.get("-T")));
+    }
+
+    private void booksPrinter(Map<String, String> args) {
+        for (Book book : libraryService.findBooksByAuthor(args.get("-A"))) {
+            System.out.println(book);
         }
     }
 }

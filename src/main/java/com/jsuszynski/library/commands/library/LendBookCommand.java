@@ -11,6 +11,7 @@ public class LendBookCommand extends Command {
     private static final String LENDING_PARAMS = "Podaj parametry w formacie: " +
             "-W<imię i nazwisko wypożyczającego> i -T<tytuł> lub -I<ISBN>. ";
     private static final String WRONG_PARAMS = "Niepoprawne parametry.";
+    public static final String BOOK_LENT = "Wypożyczono książkę pod tytułem %s, ISBN %s";
 
     @Override
     public void execute() {
@@ -37,6 +38,7 @@ public class LendBookCommand extends Command {
 
     private void swapBooks(String reader, Book book) {
         Book lentBook = book.lentBook(reader);
+        System.out.println(String.format(BOOK_LENT, lentBook.getTitle(), lentBook.getIsbn()));
         databaseService.deleteBook(book);
         databaseService.addBook(lentBook);
     }

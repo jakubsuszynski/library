@@ -12,10 +12,6 @@ public class ArgumentsValidator {
         return (hasOneParam(args) && (containsTitle(args) || containsIsbn(args)));
     }
 
-    private boolean hasOneParam(Map<String, String> args) {
-        return args.size() == 1;
-    }
-
     public Boolean findingBooksParams(Map<String, String> args) {
         return (!containsIsbn(args) && !containsTitle(args) && !containsAuthor(args));
     }
@@ -25,9 +21,16 @@ public class ArgumentsValidator {
     }
 
     public Boolean returnBookParams(Map<String, String> args) {
-    return hasOneParam(args ) && (containsIsbn(args) || containsTitle(args));
+        return hasOneParam(args) && (containsIsbn(args) || containsTitle(args));
     }
 
+    public Boolean isLongEnogh(String arg) {
+        return arg.length() < 3;
+    }
+
+    private boolean hasOneParam(Map<String, String> args) {
+        return args.size() == 1;
+    }
 
     private boolean containsIsbn(Map<String, String> args) {
         return args.containsKey("-I");
