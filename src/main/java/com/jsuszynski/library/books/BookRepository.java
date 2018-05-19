@@ -1,6 +1,5 @@
 package com.jsuszynski.library.books;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,7 +9,6 @@ public class BookRepository {
 
     private List<Book> books = new ArrayList<>();
     private static BookRepository instance;
-
 
 
     private BookRepository() {
@@ -48,12 +46,6 @@ public class BookRepository {
     public List<Book> findByAuthor(String author) {
         return books.stream()
                 .filter(s -> s.getAuthor().equals(author))
-                .collect(Collectors.toList());
-    }
-
-    public List<Book> findByDate(LocalDate date) {
-        return books.stream()
-                .filter(s -> s.getLastLending().equals(date))
                 .collect(Collectors.toList());
     }
 

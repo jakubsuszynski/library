@@ -42,6 +42,14 @@ public class Book {
         return lastLending;
     }
 
+    public Book lentBook(String reader) {
+        return new Book(this.title, this.author, this.isbn, reader, LocalDate.now(), true);
+    }
+
+    public Book returnedBook() {
+        return new Book(this.title, this.author, this.isbn, this.lastReader, this.lastLending, false);
+    }
+
 
     public Book(String title, String author, String isbn, String lastReader, LocalDate lastLending, Boolean isLent) {
         this.title = title;

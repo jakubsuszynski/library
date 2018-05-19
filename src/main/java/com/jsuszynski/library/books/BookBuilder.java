@@ -41,15 +41,9 @@ public class BookBuilder {
         return this;
     }
 
-    public Book buildBrandNewBook() {
+    public Book build() {
         return new Book(title, author, isbn, lastReader, LocalDate.EPOCH, false);
     }
 
-    public Book buildLentBook() {
-        return new Book(title, author, isbn, lastReader, lastLending, state);
-    }
 
-    public Book buildReturnedBook(Book book) {
-        return new Book(book.getTitle(), book.getAuthor(), book.getAuthor(), book.getLastReader(), book.getLastLending(), false);
-    }
 }
