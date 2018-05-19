@@ -25,7 +25,7 @@ public class BookRepository {
     }
 
     public List<Book> findByAuthor(String author) {
-        return books.stream().filter(s -> s.getTitle().equals(author)).collect(Collectors.toList());
+        return books.stream().filter(s -> s.getAuthor().equals(author)).collect(Collectors.toList());
     }
     public List<Book> findByDate(LocalDate date) {
         return books.stream().filter(s -> s.getLastLending().equals(date)).collect(Collectors.toList());

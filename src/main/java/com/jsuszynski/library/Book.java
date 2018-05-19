@@ -8,9 +8,20 @@ public class Book {
     private final String title;
     private final String author;
     private final String isbn;
-    private final String lastReader;
-    private final Boolean state;
-    private final LocalDate lastLending;
+    private String lastReader;
+    private Boolean state;
+    private LocalDate lastLending;
+
+
+    public Book setState(Boolean state) {
+        this.state = state;
+        return this;
+    }
+
+    public Book setLastLending(LocalDate lastLending) {
+        this.lastLending = lastLending;
+        return this;
+    }
 
 
     public Boolean getState() {
@@ -73,8 +84,14 @@ public class Book {
                 "\nOstatni czytelnik: " + lastReader;
     }
 
-    public Book lendBook(String lastReader) {
-        return new Book(title, author, isbn, lastReader, LocalDate.now(), true);
+    public void lendBook(String lastReader) {
+        this.state = true;
+        this.lastLending = LocalDate.now();
+        this.lastReader = lastReader;
 
+
+    }
+    public void returnBook(){
+        this.state = false;
     }
 }
