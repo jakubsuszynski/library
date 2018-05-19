@@ -1,4 +1,4 @@
-package com.jsuszynski.library;
+package com.jsuszynski.library.books;
 
 import java.time.LocalDate;
 
@@ -41,7 +41,15 @@ public class BookBuilder {
         return this;
     }
 
-    public Book build() {
+    public Book buildBrandNewBook() {
         return new Book(title, author, isbn, lastReader, LocalDate.EPOCH, false);
+    }
+
+    public Book buildLentBook() {
+        return new Book(title, author, isbn, lastReader, lastLending, state);
+    }
+
+    public Book buildReturnedBook(Book book) {
+        return new Book(book.getTitle(), book.getAuthor(), book.getAuthor(), book.getLastReader(), book.getLastLending(), false);
     }
 }

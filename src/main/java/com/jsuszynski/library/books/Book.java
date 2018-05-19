@@ -1,31 +1,25 @@
-package com.jsuszynski.library;
+package com.jsuszynski.library.books;
 
 import java.time.LocalDate;
 import java.util.Objects;
 
 public class Book {
 
+    private static final String AVAILABLE = "Dostępna";
+    private static final String UNAVAILABLE = "Wypożyczona";
+    private static final String NEVER_LENT = "Książka nigdy nie wypożyczona";
+    private static final String NO_LAST_READER = "Brak ostatniego czytelnika";
+
     private final String title;
     private final String author;
     private final String isbn;
-    private String lastReader;
-    private Boolean state;
-    private LocalDate lastLending;
+    private final String lastReader;
+    private final Boolean isLent;
+    private final LocalDate lastLending;
 
 
-    public Book setState(Boolean state) {
-        this.state = state;
-        return this;
-    }
-
-    public Book setLastLending(LocalDate lastLending) {
-        this.lastLending = lastLending;
-        return this;
-    }
-
-
-    public Boolean getState() {
-        return state;
+    public Boolean getIsLent() {
+        return isLent;
     }
 
     public String getTitle() {
@@ -49,13 +43,13 @@ public class Book {
     }
 
 
-    public Book(String title, String author, String isbn, String lastReader, LocalDate lastLending, Boolean state) {
+    public Book(String title, String author, String isbn, String lastReader, LocalDate lastLending, Boolean isLent) {
         this.title = title;
         this.author = author;
         this.isbn = isbn;
         this.lastReader = lastReader;
         this.lastLending = lastLending;
-        this.state = state;
+        this.isLent = isLent;
     }
 
 
@@ -78,18 +72,18 @@ public class Book {
     @Override
     public String toString() {
 
-        String state = "Dostępna";
+        String state = AVAILABLE;
         String lastLending = this.lastLending.toString();
         String lastReader = this.lastReader;
 
-        if (this.state)
-            state = "Wypożyczona";
+        if (this.isLent)
+            state = UNAVAILABLE;
 
         if (this.lastLending.equals(LocalDate.EPOCH))
-            lastLending = "Książka nigdy nie wypożyczona";
+            lastLending = NEVER_LENT;
 
         if (lastReader == null)
-            lastReader = "Brak ostatniego czytelnika";
+            lastReader = NO_LAST_READER;
 
 
         return "Tytuł: " + title +
@@ -97,18 +91,9 @@ public class Book {
                 "\nISBN: " + isbn +
                 "\nStatus: " + state +
                 "\nOstatnie wypożyczenie: " + lastLending +
-                "\nOstatni czytelnik: " + lastReader;
+                "\nOstatni czytelnik: " + lastReader +
+                "\n";
     }
 
-    public void lendBook(String lastReader) {
-        this.state = true;
-        this.lastLending = LocalDate.now();
-        this.lastReader = lastReader;
 
-
-    }
-
-    public void returnBook() {
-        this.state = false;
-    }
 }

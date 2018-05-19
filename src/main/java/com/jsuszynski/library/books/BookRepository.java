@@ -1,4 +1,4 @@
-package com.jsuszynski.library;
+package com.jsuszynski.library.books;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -18,14 +18,14 @@ public class BookRepository {
         return books.stream()
                 .filter(s -> s.getIsbn().equals(isbn))
                 .findFirst()
-                .orElseThrow(() -> new RuntimeException("No book found"));
+                .orElseThrow(() -> new RuntimeException("Nie znaleziono książki"));
     }
 
     public Book findByTitle(String title) {
         return books.stream()
                 .filter(s -> s.getTitle().equals(title))
                 .findFirst()
-                .orElseThrow(() -> new RuntimeException("No book found"));
+                .orElseThrow(() -> new RuntimeException("Nie znaleziono książki"));
     }
 
     public List<Book> findByAuthor(String author) {
