@@ -10,7 +10,7 @@ import java.util.List;
 public class UnpopularBooksCommand extends Command {
 
     private static final String PROMPT = "Podaj ilość tygodni: ";
-    private static final String NOT_INTEGER = "Nie podano liczby całkowitej!";
+    private static final String NOT_INTEGER = "Nie podano liczby całkowitej lub baza danych pusta";
 
     private final UserInputReader userInputReader = new UserInputReader();
     private final BooksPrinter booksPrinter = new BooksPrinter();

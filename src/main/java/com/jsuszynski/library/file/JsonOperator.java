@@ -16,7 +16,7 @@ import java.util.List;
 public class JsonOperator {
     private static final String FILE_ERROR = "Problem z dostępem do pliku";
 
-    private final File file = new FileFinder().findFile();
+    private File file = new FileFinder().findFile();
     private final Gson gson = new Gson();
     private static JsonOperator jsonOperator;
 
@@ -35,6 +35,7 @@ public class JsonOperator {
 
 
     public void addBook(Book book) {
+        file = new FileFinder().findFile();
         List<Book> allBooks = new ArrayList<>(getAllBooks());
         allBooks.add(book);
 
@@ -42,6 +43,7 @@ public class JsonOperator {
     }
 
     public void deleteBook(Book book) {
+        file = new FileFinder().findFile();
         List<Book> allBooks = new ArrayList<>(getAllBooks());
         allBooks.remove(book);
 
@@ -49,7 +51,7 @@ public class JsonOperator {
     }
 
     public List<Book> getAllBooks() {
-
+        file = new FileFinder().findFile();
         try (JsonReader jsonReader = new JsonReader(new FileReader(file))) {
             Book[] books = gson.fromJson(jsonReader, Book[].class);
             return new ArrayList<>(Arrays.asList(books));
