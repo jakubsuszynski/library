@@ -15,10 +15,9 @@ public class CurrentReadersCommand extends Command {
 
         Map<String, Long> currentReaders = libraryService.returnCurrentReaders();
 
-        for (Map.Entry<String, Long> reader : currentReaders.entrySet())
-
-            System.out.println(DashReplacer
-                    .deleteDash(String
-                            .format(RESPONSE, reader.getKey(), reader.getValue())));
+        currentReaders.entrySet()
+                .forEach(s -> System.out.println(
+                        DashReplacer.deleteDash(String.format(RESPONSE, s.getKey(), s.getValue()))));
     }
 }
+
