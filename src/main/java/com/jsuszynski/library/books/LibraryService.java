@@ -10,12 +10,11 @@ import static java.util.stream.Collectors.groupingBy;
 
 public class LibraryService {
 
-    private static final String WRONG_PARAMS = "Niepoprawne parametry";
     private static final String NO_AUTHORS_BOOKS = "Nie znaleziono książek dla podanego autora.";
     private static final String ALL_BOOKS_AVAILABLE = "Żadna książka nie jest obecnie wypożyczona.";
     private static final String NO_BOOKS_FOUND = "Nie znaleziono książek niewypożyczonych od %s tygodni";
-
-    private final BookRepository bookRepository = BookRepository.getInstance();
+    private static final String NO_BOOKS_IN_DATABASE = "Nie znaleziono szukanej książki";
+    private final BookRepository bookRepository = BookRepository.getRepository();
 
 
     public List<Book> findBooksByAuthor(String author) {
@@ -25,12 +24,13 @@ public class LibraryService {
         return books;
     }
 
+
     public Book findBookByTitle(String title) {
-        return bookRepository.findByTitle(title);
+        return bookRepository.findBy(Book::getTitle, title).orElseThrow(() -> new RuntimeException(NO_BOOKS_IN_DATABASE));
     }
 
     public Book findBookByIsbn(String isbn) {
-        return bookRepository.findByIsbn(isbn);
+        return bookRepository.findBy(Book::getIsbn, isbn).orElseThrow(() -> new RuntimeException(NO_BOOKS_IN_DATABASE));
     }
 
     public List<Book> findUnpopularBooks(int weeks) {

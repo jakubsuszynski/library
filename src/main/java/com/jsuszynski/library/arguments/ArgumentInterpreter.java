@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class ArgumentInterpreter {
 
-    private static final String TOO_SHORT = "Tytul lub autor za krótki";
+    private static final String TOO_SHORT = "Podany parametr jest zbyt krótki";
     private final IsbnValidator isbnValidator = new IsbnValidator();
     private final UserInputReader userInputReader = new UserInputReader();
     private final ArgumentsValidator argumentsValidator = new ArgumentsValidator();

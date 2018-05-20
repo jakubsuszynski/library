@@ -7,23 +7,23 @@ import java.util.Map;
 
 public class LendBookCommand extends Command {
 
-    private static final String SPACING = "Wyrazy parametrów oddzielaj myślnikiem.";
-    private static final String LENDING_PARAMS = "Podaj parametry w formacie: " +
-            "-W<imię i nazwisko wypożyczającego> i -T<tytuł> lub -I<ISBN>. ";
-    private static final String WRONG_PARAMS = "Niepoprawne parametry.";
-    public static final String BOOK_LENT = "Wypożyczono książkę pod tytułem %s, ISBN %s";
+    private static final String PARAMS_PROMPT = "Podaj parametry w formacie: " +
+            "-W<imię i nazwisko wypożyczającego> i -T<tytuł> lub -I<ISBN>. " +
+            "\nWyrazy parametrów oddzielaj myślnikiem.";
+    private static final String BOOK_LENT = "Wypożyczono książkę pod tytułem %s, ISBN %s";
 
     @Override
     public void execute() {
 
 
-        System.out.println(LENDING_PARAMS + SPACING);
+        System.out.println(PARAMS_PROMPT);
 
         Map<String, String> args = argumentInterpreter.parseArguments();
 
         if (!argumentsValidator.lendingBooksParams(args)) {
             throw new RuntimeException(WRONG_PARAMS);
         }
+
         if (args.containsKey("-T")) {
             Book book = libraryService.findBookByTitle(args.get("-T"));
             swapBooks(args.get("-W"), book);

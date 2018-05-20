@@ -2,6 +2,8 @@ package com.jsuszynski.library.books;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class BookRepository {
@@ -14,7 +16,7 @@ public class BookRepository {
     private BookRepository() {
     }
 
-    public static BookRepository getInstance() {
+    public static BookRepository getRepository() {
         if (instance == null) {
             synchronized (BookRepository.class) {
                 if (instance == null) {
@@ -29,18 +31,11 @@ public class BookRepository {
         books.add(book);
     }
 
-    public Book findByIsbn(String isbn) {
-        return books.stream()
-                .filter(s -> s.getIsbn().equals(isbn))
-                .findFirst()
-                .orElseThrow(() -> new RuntimeException("Nie znaleziono książki"));
-    }
 
-    public Book findByTitle(String title) {
+    public <T> Optional<Book> findBy(Function<Book, T> selector, T value) {
         return books.stream()
-                .filter(s -> s.getTitle().equals(title))
-                .findFirst()
-                .orElseThrow(() -> new RuntimeException("Nie znaleziono książki"));
+                .filter(s -> selector.apply(s).equals(value))
+                .findFirst();
     }
 
     public List<Book> findByAuthor(String author) {

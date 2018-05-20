@@ -6,16 +6,15 @@ import java.util.Map;
 
 public class DeleteBookCommand extends Command {
 
-    private static final String WRONG_PARAMS = "Niepoprawne parametry.";
-    private static final String SPACING = "Wyrazy parametrów oddzielaj myślnikiem.";
-    public static final String DELETING_PARAMS = "Podaj parametr w formacie: -T<tytul> lub -I<ISBN>. ";
+    public static final String PROMPT = "Podaj parametr w formacie: -T<tytul> lub -I<ISBN>. " +
+            "\nWyrazy parametrów oddzielaj myślnikiem.";
     public static final String DELETE_BY_TITLE = "Usunięto książkę pod tytułem %s";
     public static final String DELETE_BY_ISBN = "Usunięto książkę o ISBN %s";
 
 
     @Override
     public void execute() {
-        System.out.println(DELETING_PARAMS + SPACING);
+        System.out.println(PROMPT);
 
         Map<String, String> args = argumentInterpreter.parseArguments();
 

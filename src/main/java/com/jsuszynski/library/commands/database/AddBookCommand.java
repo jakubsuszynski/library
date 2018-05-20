@@ -6,16 +6,15 @@ import com.jsuszynski.library.commands.Command;
 import java.util.Map;
 
 public class AddBookCommand extends Command {
-    private static final String WRONG_PARAMS = "Niepoprawne parametry.";
-    private static final String SPACING = "Wyrazy parametrów oddzielaj myślnikiem.";
-    private static final String ADDING_PARAMS = "Podaj parametry w formacie: -T<tytul> -A<autor> -I<ISBN>. ";
+    private static final String ADDING_PARAMS = "Podaj parametry w formacie: -T<tytul> -A<autor> -I<ISBN>. " +
+            "\nWyrazy parametrów oddzielaj myślnikiem.";
     private static final String SUCCESS = "Dodano książkę do bazy danych.";
-
+    private static final String NO_LAST_READER = "Brak ostatniego czytelnika";
 
     @Override
     public void execute() {
 
-        System.out.println(ADDING_PARAMS + SPACING);
+        System.out.println(ADDING_PARAMS);
 
         Map<String, String> args = argumentInterpreter.parseArguments();
 
@@ -27,7 +26,8 @@ public class AddBookCommand extends Command {
                 .withAuthor(args.get("-A"))
                 .withIsbn(args.get("-I"))
                 .withTitle(args.get("-T"))
-                .build());
+                .withLastReader(NO_LAST_READER)
+                .buildNewBook());
 
         System.out.println(SUCCESS);
     }

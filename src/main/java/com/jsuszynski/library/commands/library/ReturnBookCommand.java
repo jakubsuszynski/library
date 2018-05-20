@@ -7,13 +7,14 @@ import java.util.Map;
 
 public class ReturnBookCommand extends Command {
 
-    private static final String WRONG_PARAMS = "Niepoprawne parametry.";
-    private static final String RETURN_BOOK_PARAMS = "Podaj parametr w formacie: -T<tytuł> lub -I<ISBN>";
+
+    private static final String PROMPT = "Podaj parametry w formacie: -T<tytul> -A<autor> -I<ISBN>. " +
+            "\nWyrazy parametrów oddzielaj myślnikiem.";
     private static final String BOOK_RETURNED = "Zwrócono książkę o tytule %s, ISBN %s";
 
     @Override
     public void execute() {
-        System.out.println(RETURN_BOOK_PARAMS);
+        System.out.println(PROMPT);
         Map<String, String> args = argumentInterpreter.parseArguments();
 
         if (!argumentsValidator.returnBookParams(args)) {

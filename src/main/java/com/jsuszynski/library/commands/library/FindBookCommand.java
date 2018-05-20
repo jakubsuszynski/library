@@ -7,13 +7,13 @@ import java.util.Map;
 
 public class FindBookCommand extends Command {
 
-    private static final String WRONG_PARAMS = "Niepoprawne parametry.";
-
+    private static final String PROMPT = "Podaj parametry w formacie: -T<tytul>, -A<autor> lub -I<ISBN>. " +
+            "\nWyrazy parametrów oddzielaj myślnikiem.";
 
     @Override
     public void execute() {
 
-        System.out.println("Podaj parametr w formacie: -T<tytul>, -I<ISBN> lub -A<autor>");
+        System.out.println(PROMPT);
 
 
         Map<String, String> args = argumentInterpreter.parseArguments();
@@ -26,7 +26,7 @@ public class FindBookCommand extends Command {
         } else if (args.containsKey("-I")) {
             byIsbnPrinter(args);
         } else {
-            booksPrinter(args);
+            byAuthorPrinter(args);
         }
     }
 
@@ -38,7 +38,7 @@ public class FindBookCommand extends Command {
         System.out.println(libraryService.findBookByTitle(args.get("-T")));
     }
 
-    private void booksPrinter(Map<String, String> args) {
+    private void byAuthorPrinter(Map<String, String> args) {
         for (Book book : libraryService.findBooksByAuthor(args.get("-A"))) {
             System.out.println(book);
         }
