@@ -26,14 +26,6 @@ public class Book {
         return title;
     }
 
-    public String getLowerCaseTitle() {
-        return title.toLowerCase();
-    }
-
-    public String getLowerCaseAuthor() {
-        return author.toLowerCase();
-    }
-
     public String getAuthor() {
         return author;
     }

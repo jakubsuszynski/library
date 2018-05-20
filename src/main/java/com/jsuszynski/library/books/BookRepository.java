@@ -23,12 +23,12 @@ public class BookRepository {
                 .filter(s -> selector.apply(s).equalsIgnoreCase(value))
                 .findFirst();
     }
-
-    public List<Book> findByAuthor(String author) {
+    public List<Book> findSimilarBooks(Function<Book, String> selector, String value) {
         return books.stream()
-                .filter(s -> s.getAuthor().equalsIgnoreCase(author))
+                .filter(s -> selector.apply(s).toLowerCase().contains(value.toLowerCase()))
                 .collect(Collectors.toList());
     }
+
 
     public List<Book> getAllBooks() {
         return books;
