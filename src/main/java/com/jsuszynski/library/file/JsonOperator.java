@@ -18,6 +18,21 @@ public class JsonOperator {
 
     private final File file = new FileFinder().findFile();
     private final Gson gson = new Gson();
+    private static JsonOperator jsonOperator;
+
+    private JsonOperator() {
+    }
+
+    public static JsonOperator getInstance() {
+        if (jsonOperator == null) {
+            synchronized (JsonOperator.class) {
+                if (jsonOperator == null)
+                    jsonOperator = new JsonOperator();
+            }
+        }
+        return jsonOperator;
+    }
+
 
     public void addBook(Book book) {
         List<Book> allBooks = new ArrayList<>(getAllBooks());
@@ -33,16 +48,6 @@ public class JsonOperator {
         performOperation(allBooks);
     }
 
-    private void performOperation(List<Book> books) {
-
-        try (JsonWriter jsonWriter = new JsonWriter(new FileWriter(file))) {
-            jsonWriter.setIndent(" ");
-            gson.toJson(books, books.getClass(), jsonWriter);
-        } catch (Exception e) {
-            throw new RuntimeException(FILE_ERROR);
-        }
-    }
-
     public List<Book> getAllBooks() {
 
         try (JsonReader jsonReader = new JsonReader(new FileReader(file))) {
@@ -54,6 +59,16 @@ public class JsonOperator {
             return new ArrayList<>();
         }
 
+    }
+
+    private void performOperation(List<Book> books) {
+
+        try (JsonWriter jsonWriter = new JsonWriter(new FileWriter(file))) {
+            jsonWriter.setIndent(" ");
+            gson.toJson(books, books.getClass(), jsonWriter);
+        } catch (Exception e) {
+            throw new RuntimeException(FILE_ERROR);
+        }
     }
 
 }

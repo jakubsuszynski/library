@@ -45,9 +45,4 @@ public class BookBuilder {
         return new Book(title, author, isbn, lastReader, LocalDate.EPOCH, false);
     }
 
-    public Book buildExisingBook() {
-        return new Book(title, author, isbn, lastReader, lastLending, lent);
-    }
-
-
 }

@@ -25,7 +25,11 @@ public class ArgumentsValidator {
     }
 
     public Boolean isLongEnough(String arg) {
-        return arg.length() < 3;
+        return argumentShorterThanTwoSigns(arg);
+    }
+
+    private boolean argumentShorterThanTwoSigns(String arg) {
+        return arg.length() < 2;
     }
 
     private boolean hasOneParam(Map<String, String> args) {

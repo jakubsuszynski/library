@@ -5,6 +5,9 @@ import com.jsuszynski.library.commands.Command;
 import java.util.Map;
 
 public class CurrentReadersCommand extends Command {
+
+    private static final String RESPONSE = "%s Liczba ksiązek: %s ";
+
     @Override
     public void execute() {
 
@@ -12,6 +15,9 @@ public class CurrentReadersCommand extends Command {
         Map<String, Long> currentReaders = libraryService.returnCurrentReaders();
 
         for (Map.Entry<String, Long> reader : currentReaders.entrySet())
-            System.out.println(reader.getKey() + ": " + reader.getValue() + " książek");
+
+            System.out.println(dashReplacer
+                    .deleteDash(String
+                            .format(RESPONSE, reader.getKey(), reader.getValue())));
     }
 }

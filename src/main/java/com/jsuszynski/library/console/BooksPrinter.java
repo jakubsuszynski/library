@@ -1,4 +1,4 @@
-package com.jsuszynski.library.commands.library;
+package com.jsuszynski.library.console;
 
 import com.jsuszynski.library.books.Book;
 

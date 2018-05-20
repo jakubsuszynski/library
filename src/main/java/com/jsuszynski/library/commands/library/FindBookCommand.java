@@ -2,6 +2,7 @@ package com.jsuszynski.library.commands.library;
 
 import com.jsuszynski.library.books.Book;
 import com.jsuszynski.library.commands.Command;
+import com.jsuszynski.library.console.BooksPrinter;
 
 import java.util.List;
 import java.util.Map;

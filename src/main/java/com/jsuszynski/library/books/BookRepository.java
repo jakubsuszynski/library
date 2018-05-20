@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 public class BookRepository {
 
 
-    private final JsonOperator jsonOperator = new JsonOperator();
+    private final JsonOperator jsonOperator = JsonOperator.getInstance();
     private final List<Book> books = jsonOperator.getAllBooks();
 
     public void addBook(Book book) {
@@ -23,6 +23,7 @@ public class BookRepository {
                 .filter(s -> selector.apply(s).equalsIgnoreCase(value))
                 .findFirst();
     }
+
     public List<Book> findSimilarBooks(Function<Book, String> selector, String value) {
         return books.stream()
                 .filter(s -> selector.apply(s).toLowerCase().contains(value.toLowerCase()))

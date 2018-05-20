@@ -1,5 +1,7 @@
 package com.jsuszynski.library.books;
 
+import com.jsuszynski.library.console.DashReplacer;
+
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -10,6 +12,7 @@ public class Book {
     private static final String NEVER_LENT = "Książka nigdy nie wypożyczona";
     private static final String NO_LAST_READER = "Brak ostatniego czytelnika";
 
+    private final DashReplacer dashReplacer = new DashReplacer();
     private final String title;
     private final String author;
     private final String isbn;
@@ -17,6 +20,15 @@ public class Book {
     private final Boolean lent;
     private final LocalDate lastLending;
 
+
+    public Book(String title, String author, String isbn, String lastReader, LocalDate lastLending, Boolean lent) {
+        this.title = title;
+        this.author = author;
+        this.isbn = isbn;
+        this.lastReader = lastReader;
+        this.lastLending = lastLending;
+        this.lent = lent;
+    }
 
     public Boolean isLent() {
         return lent;
@@ -50,15 +62,6 @@ public class Book {
         return new Book(this.title, this.author, this.isbn, this.lastReader, this.lastLending, false);
     }
 
-
-    public Book(String title, String author, String isbn, String lastReader, LocalDate lastLending, Boolean lent) {
-        this.title = title;
-        this.author = author;
-        this.isbn = isbn;
-        this.lastReader = lastReader;
-        this.lastLending = lastLending;
-        this.lent = lent;
-    }
 
 
     @Override
@@ -95,14 +98,13 @@ public class Book {
 
         if (lastReader == null)
             lastReader = NO_LAST_READER;
-
-        return "Tytuł: " + title +
+        return dashReplacer.deleteDash("Tytuł: " + title +
                 "\nAutor: " + author +
                 "\nISBN: " + isbn +
                 "\nStatus: " + state +
                 "\nOstatnie wypożyczenie: " + lastLending +
                 "\nOstatni czytelnik: " + lastReader +
-                "\n";
+                "\n");
 
     }
 
