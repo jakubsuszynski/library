@@ -15,10 +15,10 @@ public class ArgumentInterpreter {
     private final ArgumentsValidator argumentsValidator = new ArgumentsValidator();
 
 
-    public Map<String, String> parseArguments() {
+    public Map<Params, String> parseArguments() {
 
         String[] arguments = userInputReader.getUserInput().split(" ");
-        Map<String, String> args = new HashMap<>();
+        Map<Params, String> args = new HashMap<>();
 
         for (String argument : arguments) {
 
@@ -28,8 +28,17 @@ public class ArgumentInterpreter {
             else if ((argumentsValidator.isLongEnough(argument))) {
                 throw new RuntimeException(TOO_SHORT);
             }
-            args.put(argument.substring(0, 2), argument.substring(2));
+
+            if (argument.startsWith("-I")) {
+                args.put(Params.I, argument.substring(2));
+            } else if (argument.startsWith("-T")) {
+                args.put(Params.T, argument.substring(2));
+            } else if (argument.startsWith("-W")) {
+                args.put(Params.W, argument.substring(2));
+            } else
+                args.put(Params.A, argument.substring(2));
         }
+
 
         return args;
 

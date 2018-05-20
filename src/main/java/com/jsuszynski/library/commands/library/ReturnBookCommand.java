@@ -1,5 +1,6 @@
 package com.jsuszynski.library.commands.library;
 
+import com.jsuszynski.library.arguments.Params;
 import com.jsuszynski.library.books.Book;
 import com.jsuszynski.library.commands.Command;
 import com.jsuszynski.library.console.DashReplacer;
@@ -16,19 +17,19 @@ public class ReturnBookCommand extends Command {
     @Override
     public void execute() {
         System.out.println(PROMPT);
-        Map<String, String> args = argumentInterpreter.parseArguments();
+        Map<Params, String> args = argumentInterpreter.parseArguments();
 
         if (!argumentsValidator.returnBookParams(args)) {
             throw new RuntimeException(WRONG_PARAMS);
         }
 
 
-        if (args.containsKey("-T")) {
-            Book book = libraryService.findBy(Book::getTitle, args.get("-T"));
+        if (args.containsKey(Params.T)) {
+            Book book = libraryService.findBy(Book::getTitle, args.get(Params.T));
             swapBooks(book);
 
         } else {
-            Book book = libraryService.findBy(Book::getIsbn, args.get("-I"));
+            Book book = libraryService.findBy(Book::getIsbn, args.get(Params.I));
             swapBooks(book);
         }
 
@@ -37,7 +38,7 @@ public class ReturnBookCommand extends Command {
     private void swapBooks(Book book) {
         Book returnedBook = book.returnedBook();
 
-        System.out.println(dashReplacer
+        System.out.println(DashReplacer
                 .deleteDash(String.format(BOOK_RETURNED, returnedBook.getTitle(), returnedBook.getIsbn())));
 
         databaseService.deleteBook(book);

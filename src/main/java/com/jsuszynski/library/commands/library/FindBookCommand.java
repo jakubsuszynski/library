@@ -1,5 +1,6 @@
 package com.jsuszynski.library.commands.library;
 
+import com.jsuszynski.library.arguments.Params;
 import com.jsuszynski.library.books.Book;
 import com.jsuszynski.library.commands.Command;
 import com.jsuszynski.library.console.BooksPrinter;
@@ -18,34 +19,34 @@ public class FindBookCommand extends Command {
         System.out.println(PROMPT);
 
 
-        Map<String, String> args = argumentInterpreter.parseArguments();
+        Map<Params, String> args = argumentInterpreter.parseArguments();
 
         if (argumentsValidator.findingBooksParams(args)) {
             throw new RuntimeException(WRONG_PARAMS);
         }
-        if (args.containsKey("-T")) {
+        if (args.containsKey(Params.T)) {
             byTitlePrinter(args);
-        } else if (args.containsKey("-I")) {
+        } else if (args.containsKey(Params.I)) {
             byIsbnPrinter(args);
         } else {
             byAuthorPrinter(args);
         }
     }
 
-    private void byIsbnPrinter(Map<String, String> args) {
-        List<Book> books = libraryService.findSimilarBooks(Book::getIsbn, args.get("-I"));
+    private void byIsbnPrinter(Map<Params, String> args) {
+        List<Book> books = libraryService.findSimilarBooks(Book::getIsbn, args.get(Params.I));
         booksPrinter.printBooks(books);
     }
 
 
-    private void byTitlePrinter(Map<String, String> args) {
-        List<Book> books = libraryService.findSimilarBooks(Book::getTitle, args.get("-T"));
+    private void byTitlePrinter(Map<Params, String> args) {
+        List<Book> books = libraryService.findSimilarBooks(Book::getTitle, args.get(Params.T));
 
         booksPrinter.printBooks(books);
     }
 
-    private void byAuthorPrinter(Map<String, String> args) {
-        List<Book> books = libraryService.findSimilarBooks(Book::getAuthor, args.get("-A"));
+    private void byAuthorPrinter(Map<Params, String> args) {
+        List<Book> books = libraryService.findSimilarBooks(Book::getAuthor, args.get(Params.A));
         booksPrinter.printBooks(books);
     }
 }

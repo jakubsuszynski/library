@@ -1,7 +1,9 @@
 package com.jsuszynski.library.commands.database;
 
+import com.jsuszynski.library.arguments.Params;
 import com.jsuszynski.library.books.Book;
 import com.jsuszynski.library.commands.Command;
+import com.jsuszynski.library.console.DashReplacer;
 
 import java.util.Map;
 
@@ -17,24 +19,24 @@ public class DeleteBookCommand extends Command {
     public void execute() {
         System.out.println(PROMPT);
 
-        Map<String, String> args = argumentInterpreter.parseArguments();
+        Map<Params, String> args = argumentInterpreter.parseArguments();
 
         if (!argumentsValidator.deletingBooksParams(args)) {
             throw new RuntimeException(WRONG_PARAMS);
         }
 
         if (args.containsKey("-T")) {
-            databaseService.deleteBook(libraryService.findBy(Book::getTitle, args.get("-T")));
+            databaseService.deleteBook(libraryService.findBy(Book::getTitle, args.get(Params.T)));
 
-            System.out.println(dashReplacer
+            System.out.println(DashReplacer
                     .deleteDash(String
-                            .format(DELETE_BY_TITLE, args.get("-T"))));
+                            .format(DELETE_BY_TITLE, args.get(Params.T))));
         } else {
-            databaseService.deleteBook(libraryService.findBy(Book::getIsbn, args.get("-I")));
+            databaseService.deleteBook(libraryService.findBy(Book::getIsbn, args.get(Params.I)));
 
-            System.out.println(dashReplacer
+            System.out.println(DashReplacer
                     .deleteDash(String
-                            .format(DELETE_BY_ISBN, args.get("-I"))));
+                            .format(DELETE_BY_ISBN, args.get(Params.I))));
         }
 
     }

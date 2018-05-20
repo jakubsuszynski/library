@@ -1,5 +1,6 @@
 package com.jsuszynski.library.commands.database;
 
+import com.jsuszynski.library.arguments.Params;
 import com.jsuszynski.library.books.BookBuilder;
 import com.jsuszynski.library.commands.Command;
 
@@ -16,16 +17,16 @@ public class AddBookCommand extends Command {
 
         System.out.println(PROMPT);
 
-        Map<String, String> args = argumentInterpreter.parseArguments();
+        Map<Params, String> args = argumentInterpreter.parseArguments();
 
         if (!argumentsValidator.addingBooksParams(args)) {
             throw new RuntimeException(WRONG_PARAMS);
         }
 
         databaseService.addBook(new BookBuilder()
-                .withAuthor(args.get("-A"))
-                .withIsbn(args.get("-I"))
-                .withTitle(args.get("-T"))
+                .withAuthor(args.get(Params.A))
+                .withIsbn(args.get(Params.I))
+                .withTitle(args.get(Params.T))
                 .withLastReader(NO_LAST_READER)
                 .buildNewBook());
 

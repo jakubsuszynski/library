@@ -12,7 +12,6 @@ public class Book {
     private static final String NEVER_LENT = "Książka nigdy nie wypożyczona";
     private static final String NO_LAST_READER = "Brak ostatniego czytelnika";
 
-    private final DashReplacer dashReplacer = new DashReplacer();
     private final String title;
     private final String author;
     private final String isbn;
@@ -98,7 +97,7 @@ public class Book {
 
         if (lastReader == null)
             lastReader = NO_LAST_READER;
-        return dashReplacer.deleteDash("Tytuł: " + title +
+        return DashReplacer.deleteDash("Tytuł: " + title +
                 "\nAutor: " + author +
                 "\nISBN: " + isbn +
                 "\nStatus: " + state +

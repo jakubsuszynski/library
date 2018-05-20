@@ -1,7 +1,9 @@
 package com.jsuszynski.library.commands.library;
 
+import com.jsuszynski.library.arguments.Params;
 import com.jsuszynski.library.books.Book;
 import com.jsuszynski.library.commands.Command;
+import com.jsuszynski.library.console.DashReplacer;
 
 import java.util.Map;
 
@@ -17,35 +19,35 @@ public class LendBookCommand extends Command {
 
         System.out.println(PROMPT);
 
-        Map<String, String> args = argumentInterpreter.parseArguments();
+        Map<Params, String> args = argumentInterpreter.parseArguments();
 
         if (!argumentsValidator.lendingBooksParams(args)) {
             throw new RuntimeException(WRONG_PARAMS);
         }
 
-        if (args.containsKey("-T")) {
-            Book book = libraryService.findBy(Book::getTitle, args.get("-T"));
+        if (args.containsKey(Params.T)) {
+            Book book = libraryService.findBy(Book::getTitle, args.get(Params.T));
             lendIfAvailable(args, book);
 
         } else {
-            Book book = libraryService.findBy(Book::getIsbn, args.get("-I"));
+            Book book = libraryService.findBy(Book::getIsbn, args.get(Params.T));
             lendIfAvailable(args, book);
         }
 
 
     }
 
-    private void lendIfAvailable(Map<String, String> args, Book book) {
+    private void lendIfAvailable(Map<Params, String> args, Book book) {
         if (book.isLent()) {
             throw new RuntimeException("Książka jest obecnie wypożyczona!");
         }
-        swapBooks(args.get("-W"), book);
+        swapBooks(args.get(Params.W), book);
     }
 
     private void swapBooks(String reader, Book book) {
         Book lentBook = book.lentBook(reader);
 
-        System.out.println(dashReplacer
+        System.out.println(DashReplacer
                 .deleteDash(String.format(BOOK_LENT, lentBook.getTitle(), lentBook.getIsbn(), lentBook.getLastReader())));
 
         databaseService.deleteBook(book);

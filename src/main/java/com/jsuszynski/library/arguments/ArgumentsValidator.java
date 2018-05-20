@@ -4,23 +4,23 @@ import java.util.Map;
 
 public class ArgumentsValidator {
 
-    public Boolean addingBooksParams(Map<String, String> args) {
+    public Boolean addingBooksParams(Map<Params, String> args) {
         return (containsIsbn(args) && containsTitle(args) && containsAuthor(args));
     }
 
-    public Boolean deletingBooksParams(Map<String, String> args) {
+    public Boolean deletingBooksParams(Map<Params, String> args) {
         return (hasOneParam(args) && (containsTitle(args) || containsIsbn(args)));
     }
 
-    public Boolean findingBooksParams(Map<String, String> args) {
+    public Boolean findingBooksParams(Map<Params, String> args) {
         return (!containsIsbn(args) && !containsTitle(args) && !containsAuthor(args));
     }
 
-    public Boolean lendingBooksParams(Map<String, String> args) {
+    public Boolean lendingBooksParams(Map<Params, String> args) {
         return (containsReader(args) && (containsTitle(args) || containsIsbn(args)));
     }
 
-    public Boolean returnBookParams(Map<String, String> args) {
+    public Boolean returnBookParams(Map<Params, String> args) {
         return hasOneParam(args) && (containsIsbn(args) || containsTitle(args));
     }
 
@@ -32,23 +32,23 @@ public class ArgumentsValidator {
         return arg.length() < 2;
     }
 
-    private boolean hasOneParam(Map<String, String> args) {
+    private boolean hasOneParam(Map<Params, String> args) {
         return args.size() == 1;
     }
 
-    private boolean containsIsbn(Map<String, String> args) {
-        return args.containsKey("-I");
+    private boolean containsIsbn(Map<Params, String> args) {
+        return args.containsKey(Params.I);
     }
 
-    private boolean containsAuthor(Map<String, String> args) {
-        return args.containsKey("-A");
+    private boolean containsAuthor(Map<Params, String> args) {
+        return args.containsKey(Params.A);
     }
 
-    private boolean containsTitle(Map<String, String> args) {
-        return args.containsKey("-T");
+    private boolean containsTitle(Map<Params, String> args) {
+        return args.containsKey(Params.T);
     }
 
-    private boolean containsReader(Map<String, String> args) {
-        return args.containsKey("-W");
+    private boolean containsReader(Map<Params, String> args) {
+        return args.containsKey(Params.W);
     }
 }

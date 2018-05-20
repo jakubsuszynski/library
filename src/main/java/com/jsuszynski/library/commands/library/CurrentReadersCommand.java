@@ -1,6 +1,7 @@
 package com.jsuszynski.library.commands.library;
 
 import com.jsuszynski.library.commands.Command;
+import com.jsuszynski.library.console.DashReplacer;
 
 import java.util.Map;
 
@@ -16,7 +17,7 @@ public class CurrentReadersCommand extends Command {
 
         for (Map.Entry<String, Long> reader : currentReaders.entrySet())
 
-            System.out.println(dashReplacer
+            System.out.println(DashReplacer
                     .deleteDash(String
                             .format(RESPONSE, reader.getKey(), reader.getValue())));
     }
