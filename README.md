@@ -1,2 +1,0 @@
-## Homework
-### For Goyello workshops
