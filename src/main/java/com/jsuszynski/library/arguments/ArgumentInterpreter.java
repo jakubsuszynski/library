@@ -13,7 +13,9 @@ public class ArgumentInterpreter {
     private final UserInputReader userInputReader = new UserInputReader();
     private final ArgumentsValidator argumentsValidator = new ArgumentsValidator();
 
+
     public Map<String, String> parseArguments() {
+
         String[] arguments = userInputReader.getUserInput().split(" ");
         Map<String, String> args = new HashMap<>();
 
@@ -22,7 +24,7 @@ public class ArgumentInterpreter {
             if (argument.startsWith("-I"))
                 isbnValidator.isValid(argument.substring(2));
 
-            else if ((argumentsValidator.isLongEnogh(argument))) {
+            else if ((argumentsValidator.isLongEnough(argument))) {
                 throw new RuntimeException(TOO_SHORT);
             }
             args.put(argument.substring(0, 2), argument.substring(2));

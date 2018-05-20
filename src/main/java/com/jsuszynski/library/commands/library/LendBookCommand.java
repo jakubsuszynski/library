@@ -15,7 +15,6 @@ public class LendBookCommand extends Command {
     @Override
     public void execute() {
 
-
         System.out.println(PARAMS_PROMPT);
 
         Map<String, String> args = argumentInterpreter.parseArguments();
@@ -25,15 +24,22 @@ public class LendBookCommand extends Command {
         }
 
         if (args.containsKey("-T")) {
-            Book book = libraryService.findBookByTitle(args.get("-T"));
-            swapBooks(args.get("-W"), book);
+            Book book = libraryService.findBy(Book::getTitle, args.get("-T"));
+            lendIfAvailable(args, book);
 
         } else {
-            Book book = libraryService.findBookByIsbn(args.get("-I"));
-            swapBooks(args.get("-W"), book);
+            Book book = libraryService.findBy(Book::getIsbn, args.get("-I"));
+            lendIfAvailable(args, book);
         }
 
 
+    }
+
+    private void lendIfAvailable(Map<String, String> args, Book book) {
+        if (book.isLent()) {
+            throw new RuntimeException("Książka jest obecnie wypożyczona!");
+        }
+        swapBooks(args.get("-W"), book);
     }
 
     private void swapBooks(String reader, Book book) {

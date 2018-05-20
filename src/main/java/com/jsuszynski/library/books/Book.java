@@ -14,16 +14,24 @@ public class Book {
     private final String author;
     private final String isbn;
     private final String lastReader;
-    private final Boolean isLent;
+    private final Boolean lent;
     private final LocalDate lastLending;
 
 
-    public Boolean getIsLent() {
-        return isLent;
+    public Boolean isLent() {
+        return lent;
     }
 
     public String getTitle() {
         return title;
+    }
+
+    public String getLowerCaseTitle() {
+        return title.toLowerCase();
+    }
+
+    public String getLowerCaseAuthor() {
+        return author.toLowerCase();
     }
 
     public String getAuthor() {
@@ -51,13 +59,13 @@ public class Book {
     }
 
 
-    public Book(String title, String author, String isbn, String lastReader, LocalDate lastLending, Boolean isLent) {
+    public Book(String title, String author, String isbn, String lastReader, LocalDate lastLending, Boolean lent) {
         this.title = title;
         this.author = author;
         this.isbn = isbn;
         this.lastReader = lastReader;
         this.lastLending = lastLending;
-        this.isLent = isLent;
+        this.lent = lent;
     }
 
 
@@ -71,7 +79,7 @@ public class Book {
                 Objects.equals(isbn, book.isbn) &&
                 Objects.equals(lastReader, book.lastReader) &&
                 Objects.equals(lastLending, book.lastLending) &&
-                Objects.equals(isLent, book.isLent);
+                Objects.equals(lent, book.lent);
     }
 
     @Override
@@ -87,7 +95,7 @@ public class Book {
         String lastLending = this.lastLending.toString();
         String lastReader = this.lastReader;
 
-        if (this.isLent)
+        if (this.lent)
             state = UNAVAILABLE;
 
         if (this.lastLending.equals(LocalDate.EPOCH))
@@ -103,6 +111,7 @@ public class Book {
                 "\nOstatnie wypożyczenie: " + lastLending +
                 "\nOstatni czytelnik: " + lastReader +
                 "\n";
+
     }
 
 

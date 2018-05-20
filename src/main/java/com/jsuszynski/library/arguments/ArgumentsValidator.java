@@ -24,7 +24,7 @@ public class ArgumentsValidator {
         return hasOneParam(args) && (containsIsbn(args) || containsTitle(args));
     }
 
-    public Boolean isLongEnogh(String arg) {
+    public Boolean isLongEnough(String arg) {
         return arg.length() < 3;
     }
 

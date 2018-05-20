@@ -23,13 +23,12 @@ public class ReturnBookCommand extends Command {
 
 
         if (args.containsKey("-T")) {
-            Book book = libraryService.findBookByTitle(args.get("-T"));
+            Book book = libraryService.findBy(Book::getTitle, args.get("-T"));
             swapBooks(book);
 
         } else {
-            Book book = libraryService.findBookByIsbn(args.get("-I"));
+            Book book = libraryService.findBy(Book::getIsbn, args.get("-I"));
             swapBooks(book);
-
         }
 
     }

@@ -10,6 +10,7 @@ public class CommandProvider {
     public static final String WRONG_COMMAND = "Niepoprawna komenda";
 
     public Command recogniseCommand(String command) {
+
         switch (command) {
             case "1":
                 return new AddBookCommand();
@@ -25,7 +26,7 @@ public class CommandProvider {
                 return new ReturnBookCommand();
             case "7":
                 return new CurrentReadersCommand();
-            case "8":
+            case "Q":
                 return new ExitCommand();
             default:
                 throw new RuntimeException(WRONG_COMMAND);

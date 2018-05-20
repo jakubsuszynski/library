@@ -31,11 +31,11 @@ public class FindBookCommand extends Command {
     }
 
     private void byIsbnPrinter(Map<String, String> args) {
-        System.out.println(libraryService.findBookByIsbn(args.get("-I")));
+        System.out.println(libraryService.findBy(Book::getIsbn, args.get("-I")));
     }
 
     private void byTitlePrinter(Map<String, String> args) {
-        System.out.println(libraryService.findBookByTitle(args.get("-T")));
+        System.out.println(libraryService.findBy(Book::getTitle, args.get("-T")));
     }
 
     private void byAuthorPrinter(Map<String, String> args) {

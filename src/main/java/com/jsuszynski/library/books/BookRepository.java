@@ -18,15 +18,15 @@ public class BookRepository {
     }
 
 
-    public <T> Optional<Book> findBy(Function<Book, T> selector, T value) {
+    public Optional<Book> findBy(Function<Book, String> selector, String value) {
         return books.stream()
-                .filter(s -> selector.apply(s).equals(value))
+                .filter(s -> selector.apply(s).equalsIgnoreCase(value))
                 .findFirst();
     }
 
     public List<Book> findByAuthor(String author) {
         return books.stream()
-                .filter(s -> s.getAuthor().equals(author))
+                .filter(s -> s.getAuthor().equalsIgnoreCase(author))
                 .collect(Collectors.toList());
     }
 

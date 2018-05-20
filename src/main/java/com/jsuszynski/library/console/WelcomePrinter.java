@@ -10,7 +10,7 @@ public class WelcomePrinter {
             "\n 5. Wypożyczenie książki" +
             "\n 6. Zwróć książkę" +
             "\n 7. Lista aktualnych wypożyczających" +
-            "\n Q - wyjście";
+            "\n Q. Wyjście";
 
     public void printWelcomeMessage() {
         System.out.println(WELCOME_MESSAGE);

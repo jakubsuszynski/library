@@ -8,7 +8,7 @@ public class BookBuilder {
     private String author;
     private String isbn;
     private String lastReader;
-    private Boolean state;
+    private Boolean lent;
     private LocalDate lastLending;
 
     public BookBuilder withTitle(String title) {
@@ -36,8 +36,8 @@ public class BookBuilder {
         return this;
     }
 
-    public BookBuilder withState(Boolean state) {
-        this.state = state;
+    public BookBuilder withLent(Boolean state) {
+        this.lent = state;
         return this;
     }
 
@@ -46,7 +46,7 @@ public class BookBuilder {
     }
 
     public Book buildExisingBook() {
-        return new Book(title, author, isbn, lastReader, lastLending, state);
+        return new Book(title, author, isbn, lastReader, lastLending, lent);
     }
 
 

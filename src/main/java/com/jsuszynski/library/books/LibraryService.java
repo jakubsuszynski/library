@@ -25,16 +25,8 @@ public class LibraryService {
         return books;
     }
 
-
-    public Book findBookByTitle(String title) {
-        return bookRepository.findBy(Book::getTitle, title).orElseThrow(() -> new RuntimeException(NO_BOOKS_IN_DATABASE));
-    }
-
-    public Book findBookByIsbn(String isbn) {
-        return bookRepository.findBy(Book::getIsbn, isbn).orElseThrow(() -> new RuntimeException(NO_BOOKS_IN_DATABASE));
-    }
-    public <T> Book findBy(Function<Book, T> selector, T value){
-        return bookRepository.findBy(selector, value).orElseThrow(()->new RuntimeException(NO_BOOKS_IN_DATABASE));
+    public Book findBy(Function<Book, String> selector, String value) {
+        return bookRepository.findBy(selector, value).orElseThrow(() -> new RuntimeException(NO_BOOKS_IN_DATABASE));
     }
 
     public List<Book> findUnpopularBooks(int weeks) {
@@ -52,7 +44,7 @@ public class LibraryService {
     public Map<String, Long> returnCurrentReaders() {
 
         Map<String, Long> readers = bookRepository.getAllBooks().stream()
-                .filter(Book::getIsLent)
+                .filter(Book::isLent)
                 .collect(groupingBy(Book::getLastReader, counting()));
 
         if (readers.isEmpty()) {

@@ -45,8 +45,7 @@ public class JsonOperator {
 
     public List<Book> getAllBooks() {
 
-        try (JsonReader jsonReader = new JsonReader(new FileReader(file));
-        ) {
+        try (JsonReader jsonReader = new JsonReader(new FileReader(file))) {
             Book[] books = gson.fromJson(jsonReader, Book[].class);
             return new ArrayList<>(Arrays.asList(books));
         } catch (IOException e) {
