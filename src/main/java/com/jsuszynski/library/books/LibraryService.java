@@ -25,7 +25,7 @@ public class LibraryService {
 
     public List<Book> findSimilarBooks(Function<Book, String> selector, String value) {
         List<Book> books = bookRepository.findSimilarBooks(selector, value);
-        if (isEmpty(books)) {
+        if (books.isEmpty()) {
             throw new RuntimeException(NO_BOOKS_IN_DATABASE);
 
         }
@@ -37,7 +37,7 @@ public class LibraryService {
         List<Book> unpopularBooks = bookRepository.getAllBooks().stream()
                 .filter(s -> s.getLastLending().isBefore(LocalDate.now().minusWeeks(weeks)))
                 .collect(Collectors.toList());
-        if (isEmpty(unpopularBooks)) {
+        if (unpopularBooks.isEmpty()) {
             throw new RuntimeException(String.format(NO_BOOKS_FOUND, weeks));
         }
         return unpopularBooks;
@@ -55,9 +55,5 @@ public class LibraryService {
         return readers;
     }
 
-
-    private boolean isEmpty(List<Book> unpopularBooks) {
-        return unpopularBooks.isEmpty();
-    }
 
 }
