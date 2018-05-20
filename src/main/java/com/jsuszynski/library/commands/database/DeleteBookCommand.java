@@ -1,5 +1,6 @@
 package com.jsuszynski.library.commands.database;
 
+import com.jsuszynski.library.books.Book;
 import com.jsuszynski.library.commands.Command;
 
 import java.util.Map;
@@ -23,10 +24,10 @@ public class DeleteBookCommand extends Command {
         }
 
         if (args.containsKey("-T")) {
-            databaseService.deleteBook(libraryService.findBookByTitle(args.get("-T")));
+            databaseService.deleteBook(libraryService.findBy(Book::getTitle, args.get("-T")));
             System.out.println(String.format(DELETE_BY_TITLE, args.get("-T")));
         } else {
-            databaseService.deleteBook(libraryService.findBookByIsbn(args.get("-I")));
+            databaseService.deleteBook(libraryService.findBy(Book::getIsbn, args.get("-I")));
             System.out.println(String.format(DELETE_BY_ISBN, args.get("-I")));
         }
 

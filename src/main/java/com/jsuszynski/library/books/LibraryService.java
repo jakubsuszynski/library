@@ -3,6 +3,7 @@ package com.jsuszynski.library.books;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.counting;
@@ -14,7 +15,7 @@ public class LibraryService {
     private static final String ALL_BOOKS_AVAILABLE = "Żadna książka nie jest obecnie wypożyczona.";
     private static final String NO_BOOKS_FOUND = "Nie znaleziono książek niewypożyczonych od %s tygodni";
     private static final String NO_BOOKS_IN_DATABASE = "Nie znaleziono szukanej książki";
-    private final BookRepository bookRepository = BookRepository.getRepository();
+    private final BookRepository bookRepository = new BookRepository();
 
 
     public List<Book> findBooksByAuthor(String author) {
@@ -31,6 +32,9 @@ public class LibraryService {
 
     public Book findBookByIsbn(String isbn) {
         return bookRepository.findBy(Book::getIsbn, isbn).orElseThrow(() -> new RuntimeException(NO_BOOKS_IN_DATABASE));
+    }
+    public <T> Book findBy(Function<Book, T> selector, T value){
+        return bookRepository.findBy(selector, value).orElseThrow(()->new RuntimeException(NO_BOOKS_IN_DATABASE));
     }
 
     public List<Book> findUnpopularBooks(int weeks) {

@@ -3,6 +3,7 @@ package com.jsuszynski.library;
 import com.jsuszynski.library.commands.CommandProvider;
 import com.jsuszynski.library.console.UserInputReader;
 import com.jsuszynski.library.console.WelcomePrinter;
+import com.jsuszynski.library.file.FilePath;
 
 public class LibraryApp {
 
@@ -10,7 +11,10 @@ public class LibraryApp {
     private final UserInputReader userInputReader = new UserInputReader();
     private final CommandProvider commandProvider = new CommandProvider();
 
-    public void run() {
+    public void run(String path) {
+
+        FilePath.setFilePath(path);
+
         do {
             try {
                 welcomePrinter.printWelcomeMessage();
@@ -18,7 +22,6 @@ public class LibraryApp {
                 String command = userInputReader.getUserInput();
 
                 commandProvider.recogniseCommand(command).execute();
-
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
@@ -26,4 +29,5 @@ public class LibraryApp {
         } while (true);
 
     }
+
 }

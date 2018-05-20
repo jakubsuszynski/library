@@ -2,7 +2,7 @@ package com.jsuszynski.library.books;
 
 public class DatabaseService {
 
-    private final BookRepository bookRepository = BookRepository.getRepository();
+    private final BookRepository bookRepository = new BookRepository();
 
 
     public void addBook(Book book) {

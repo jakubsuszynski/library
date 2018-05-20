@@ -25,7 +25,7 @@ public class CommandProvider {
                 return new ReturnBookCommand();
             case "7":
                 return new CurrentReadersCommand();
-            case "Q":
+            case "8":
                 return new ExitCommand();
             default:
                 throw new RuntimeException(WRONG_COMMAND);

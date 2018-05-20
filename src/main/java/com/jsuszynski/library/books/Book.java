@@ -68,13 +68,16 @@ public class Book {
         Book book = (Book) o;
         return Objects.equals(title, book.title) &&
                 Objects.equals(author, book.author) &&
-                Objects.equals(isbn, book.isbn);
+                Objects.equals(isbn, book.isbn) &&
+                Objects.equals(lastReader, book.lastReader) &&
+                Objects.equals(lastLending, book.lastLending) &&
+                Objects.equals(isLent, book.isLent);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(title, author, isbn);
+        return Objects.hash(title, author, isbn, lastReader, lastReader, isbn);
     }
 
     @Override
@@ -92,7 +95,6 @@ public class Book {
 
         if (lastReader == null)
             lastReader = NO_LAST_READER;
-
 
         return "Tytuł: " + title +
                 "\nAutor: " + author +
