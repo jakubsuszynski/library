@@ -6,7 +6,7 @@ import java.io.PrintWriter;
 
 public class FileFinder {
 
-    public static final String FILE_ERROR = "Problem z dostępem do pliku";
+    private static final String FILE_ERROR = "Problem z dostępem do pliku";
     private final File file = new File("resources/database.json");
 
 
@@ -24,6 +24,7 @@ public class FileFinder {
 
         if (!file.exists()) {
             file.createNewFile();
+
             PrintWriter printWriter = new PrintWriter(file);
             printWriter.print("[\n]");
             printWriter.close();
