@@ -8,17 +8,18 @@ import java.util.Map;
 
 public class ArgumentInterpreter {
 
-    private static final String TOO_SHORT = "Podany parametr jest zbyt krótki";
+    private static final String TOO_SHORT = "Podany parametr jest zbyt krótki.";
+    public static final String WRONG_PARAMS = "Podano nieistniejące parametry.";
 
     private final IsbnValidator isbnValidator = new IsbnValidator();
     private final UserInputReader userInputReader = new UserInputReader();
     private final ArgumentsValidator argumentsValidator = new ArgumentsValidator();
-
+    private final Map<Params, String> args = new HashMap<>();
 
     public Map<Params, String> parseArguments() {
 
         String[] arguments = userInputReader.getUserInput().split(" ");
-        Map<Params, String> args = new HashMap<>();
+
 
         for (String argument : arguments) {
 
@@ -28,20 +29,24 @@ public class ArgumentInterpreter {
             else if ((argumentsValidator.isLongEnough(argument))) {
                 throw new RuntimeException(TOO_SHORT);
             }
-
-            if (argument.startsWith("-I")) {
-                args.put(Params.I, argument.substring(2));
-            } else if (argument.startsWith("-T")) {
-                args.put(Params.T, argument.substring(2));
-            } else if (argument.startsWith("-W")) {
-                args.put(Params.W, argument.substring(2));
-            } else
-                args.put(Params.A, argument.substring(2));
+            getEntrySet(argument);
         }
 
 
         return args;
 
+    }
+
+    private void getEntrySet(String argument) {
+        try {
+            args.put(getKey(argument), argument.substring(2));
+        } catch (IllegalArgumentException e) {
+            throw new RuntimeException(WRONG_PARAMS);
+        }
+    }
+
+    private Params getKey(String argument) {
+        return Params.valueOf(String.valueOf(argument.charAt(1)));
     }
 
 }
