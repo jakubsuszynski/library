@@ -1,5 +1,7 @@
 package com.jsuszynski.library.books;
 
+import com.jsuszynski.library.database.JsonOperator;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -11,8 +13,7 @@ public class BookRepository {
 
     private List<Book> books = new ArrayList<>();
     private static BookRepository instance;
-
-
+    private final JsonOperator jsonOperator = new JsonOperator();
     private BookRepository() {
     }
 
@@ -29,6 +30,7 @@ public class BookRepository {
 
     public void addBook(Book book) {
         books.add(book);
+        jsonOperator.addBook(book);
     }
 
 

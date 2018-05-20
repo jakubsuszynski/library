@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class FileFinder {
+class FileFinder {
 
     private static final String FILE_ERROR = "Problem z dostępem do pliku";
     private final File file = new File("resources/database.json");

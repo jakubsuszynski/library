@@ -1,13 +1,13 @@
 package com.jsuszynski.library.database;
 
 import com.google.gson.Gson;
+import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.jsuszynski.library.books.Book;
 
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.time.LocalDate;
 
 public class JsonOperator {
     private static final String FILE_ERROR = "Problem z dostępem do pliku";
@@ -21,24 +21,42 @@ public class JsonOperator {
         try {
 
             jsonWriter = new JsonWriter(new FileWriter(file, true));
+            jsonWriter.setIndent(" ");
+            putComa();
             gson.toJson(book, Book.class, jsonWriter);
+
         } catch (Exception e) {
             throw new RuntimeException(FILE_ERROR);
         } finally {
-            closeJsonWriter(jsonWriter);
+            closeCloseable(jsonWriter);
         }
         closeArray();
-
-
     }
 
-    private void closeJsonWriter(JsonWriter jsonWriter) {
-        if(jsonWriter!=null){
-            try {
-                jsonWriter.close();
-            } catch (IOException e) {
-                throw new RuntimeException(FILE_ERROR);
-            }
+    public Book[] getAllBooks() {
+        Book[] books;
+        JsonReader jsonReader = null;
+        try {
+            jsonReader = new JsonReader(new FileReader(file));
+            books = gson.fromJson(jsonReader, Book[].class);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(FILE_ERROR);
+        } finally {
+            closeCloseable(jsonReader);
+        }
+        return books;
+    }
+
+    private void putComa() {
+        FileWriter fileWriter = null;
+        try {
+
+            fileWriter = new FileWriter(file, true);
+            fileWriter.write(",");
+        } catch (Exception e) {
+            throw new RuntimeException(FILE_ERROR);
+        } finally {
+            closeCloseable(fileWriter);
         }
     }
 
@@ -51,7 +69,7 @@ public class JsonOperator {
         } catch (Exception e) {
             throw new RuntimeException(FILE_ERROR);
         } finally {
-            closeWriter(fileWriter);
+            closeCloseable(fileWriter);
         }
     }
 
@@ -65,14 +83,14 @@ public class JsonOperator {
         } catch (Exception e) {
             throw new RuntimeException(FILE_ERROR);
         } finally {
-            closeWriter(bufferedWriter);
+            closeCloseable(bufferedWriter);
         }
     }
 
-    private void closeWriter(Writer writer) {
-        if (writer != null) {
+    private void closeCloseable(Closeable closeable) {
+        if (closeable != null) {
             try {
-                writer.close();
+                closeable.close();
             } catch (IOException e) {
                 throw new RuntimeException(FILE_ERROR);
             }
@@ -82,6 +100,9 @@ public class JsonOperator {
 
     public static void main(String[] args) {
         JsonOperator jsonOperator = new JsonOperator();
-        jsonOperator.addBook(new Book("gdfgd", "sdfs", "234", "sdfs", LocalDate.now(), false));
+        for (Book book : jsonOperator.getAllBooks()) {
+            System.out.println(book);
+        }
+//        jsonOperator.addBook(new Book("gdfgd", "sdfs", "234", "sdfs", LocalDate.now(), false));
     }
 }
