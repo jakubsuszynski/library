@@ -25,7 +25,7 @@ public class DeleteBookCommand extends Command {
             throw new RuntimeException(WRONG_PARAMS);
         }
 
-        if (args.containsKey("-T")) {
+        if (args.containsKey(Params.T)) {
             databaseService.deleteBook(libraryService.findBy(Book::getTitle, args.get(Params.T)));
 
             System.out.println(DashReplacer
