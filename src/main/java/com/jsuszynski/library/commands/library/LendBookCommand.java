@@ -11,7 +11,7 @@ public class LendBookCommand extends Command {
 
     private static final String PROMPT = "Podaj parametry w formacie: " +
             "-W<imię i nazwisko wypożyczającego> i -T<tytuł> lub -I<ISBN>. " +
-            "\nWyrazy parametrów oddzielaj myślnikiem.";
+            "\nWyrazy parametrów oddzielaj myślnikiem a parametry - spacją.";
     private static final String BOOK_LENT = "Wypożyczono książkę pod tytułem %s, ISBN %s dla %s";
 
     @Override

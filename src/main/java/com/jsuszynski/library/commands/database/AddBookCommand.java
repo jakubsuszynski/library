@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class AddBookCommand extends Command {
     private static final String PROMPT = "Podaj parametry w formacie: -T<tytul> -A<autor> -I<ISBN>. " +
-            "\nWyrazy parametrów oddzielaj myślnikiem.";
+            "\nWyrazy parametrów oddzielaj myślnikiem, a parametry - spacją.";
     private static final String SUCCESS = "Dodano książkę do bazy danych.";
     private static final String NO_LAST_READER = "Brak ostatniego czytelnika";
 

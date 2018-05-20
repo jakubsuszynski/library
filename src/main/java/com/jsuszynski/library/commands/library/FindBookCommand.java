@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class FindBookCommand extends Command {
     private final BooksPrinter booksPrinter = new BooksPrinter();
-    private static final String PROMPT = "Podaj parametry w formacie: -T<tytul>, -A<autor> lub -I<ISBN>. " +
+    private static final String PROMPT = "Podaj parametr w formacie: -T<tytul>, -A<autor> lub -I<ISBN>. " +
             "\nWyrazy parametrów oddzielaj myślnikiem.";
 
     @Override

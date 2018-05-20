@@ -10,7 +10,7 @@ import java.util.Map;
 public class ReturnBookCommand extends Command {
 
 
-    private static final String PROMPT = "Podaj parametry w formacie: -T<tytul> lub -I<ISBN>. " +
+    private static final String PROMPT = "Podaj parametr w formacie: -T<tytul> lub -I<ISBN>. " +
             "\nWyrazy parametrów oddzielaj myślnikiem.";
     private static final String BOOK_RETURNED = "Zwrócono książkę pod tytulem %s, ISBN %s";
 
