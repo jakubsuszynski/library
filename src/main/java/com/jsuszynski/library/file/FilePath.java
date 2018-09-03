@@ -1,6 +1,10 @@
 package com.jsuszynski.library.file;
 
 public class FilePath {
+    public static String getFilePath() {
+        return FILE_PATH;
+    }
+
     private static String FILE_PATH = "";
 
 

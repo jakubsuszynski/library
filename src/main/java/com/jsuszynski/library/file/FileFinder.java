@@ -6,7 +6,7 @@ import java.io.IOException;
 class FileFinder {
 
     private static final String FILE_ERROR = "Problem z dostępem do pliku";
-    private final File file = new File("resources/file.json");
+    private final File file = new File(FilePath.getFilePath());
 
 
     public File findFile() {
