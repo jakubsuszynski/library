@@ -1,6 +1,7 @@
 package com.jsuszynski.library.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.time.LocalDate;
@@ -9,14 +10,22 @@ import java.time.LocalDate;
 @Table(name = "books")
 public class Book {
     @Id
-    private final Long id;
-    private final String title;
-    private final String author;
-    private final String isbn;
-    private final String lastReader;
-    private final Boolean lent;
-    private final LocalDate lastLending;
+    @GeneratedValue
+    private Long id;
+    private String title;
+    private String author;
+    private String isbn;
+    private String lastReader;
+    private Boolean lent;
+    private LocalDate lastLending;
 
+    public Book() {
+    }
+
+    public Book(String title, String author) {
+        this.title = title;
+        this.author = author;
+    }
 
     public Book(Long id, String title, String author, String isbn, String lastReader, LocalDate lastLending, Boolean lent) {
         this.id = id;

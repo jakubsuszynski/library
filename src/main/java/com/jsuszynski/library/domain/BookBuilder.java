@@ -10,7 +10,7 @@ public class BookBuilder {
     private String isbn;
     private String lastReader;
     private Boolean lent = false;
-    private LocalDate lastLending = LocalDate.EPOCH;
+    private LocalDate lastLending = LocalDate.now();
 
     public BookBuilder withTitle(String title) {
         this.title = title;

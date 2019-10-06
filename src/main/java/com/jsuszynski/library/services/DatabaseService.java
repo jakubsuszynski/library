@@ -1,7 +1,7 @@
 package com.jsuszynski.library.services;
 
+import com.jsuszynski.library.repositories.BooksRepository;
 import com.jsuszynski.library.domain.Book;
-import com.jsuszynski.library.repositories.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,46 +18,46 @@ import static java.util.stream.Collectors.groupingBy;
 public class DatabaseService {
 
     @Autowired
-    BookRepository bookRepository;
+    BooksRepository booksRepository;
 
     public void addBook(Book book) {
-        bookRepository.save(book);
+        booksRepository.save(book);
     }
 
     public void deleteBook(Book book) {
-        bookRepository.delete(book);
+        booksRepository.delete(book);
     }
 
     public void deleteBookById(Long id) {
-        bookRepository.deleteById(id);
+        booksRepository.deleteById(id);
     }
 
     public List<Book> getAllBooks() {
-        return (List<Book>) bookRepository.findAll();
+        return (List<Book>) booksRepository.findAll();
     }
 
     public List<Book> findUnpopularBooks(int weeks) {
-        return ((List<Book>) bookRepository.findAll()).stream()
+        return ((List<Book>) booksRepository.findAll()).stream()
                 .filter(s -> s.getLastLending().isBefore(LocalDate.now().minusWeeks(weeks)))
                 .collect(Collectors.toList());
     }
 
     public Map<String, Long> returnCurrentReaders() {
-        return ((List<Book>) bookRepository.findAll()).stream()
+        return ((List<Book>) booksRepository.findAll()).stream()
                 .filter(Book::isLent)
                 .collect(groupingBy(Book::getLastReader, counting()));
     }
 
     public List<Book> findByIsbn(String isbn) {
-        return bookRepository.findByIsbnIgnoreCase(isbn);
+        return booksRepository.findByIsbnIgnoreCase(isbn);
     }
 
     public List<Book> findByTitle(String title) {
-        return bookRepository.findByTitleContainingIgnoreCase(title);
+        return booksRepository.findByTitleContainingIgnoreCase(title);
     }
 
     public List<Book> findByAuthor(String author) {
-        return bookRepository.findByAuthorContainingIgnoreCase(author);
+        return booksRepository.findByAuthorContainingIgnoreCase(author);
     }
 
     public void returnBook(Book book) {
@@ -75,16 +75,16 @@ public class DatabaseService {
     }
 
     public void returnBookById(Long id) {
-        Optional<Book> book = bookRepository.findById(id);
+        Optional<Book> book = booksRepository.findById(id);
         if (book.isPresent() && book.get().isLent()) {
-            bookRepository.returnBook(id);
+//            booksRepository.returnBook(id);
         }
     }
 
     public void lendBookById(Long id, String reader) {
-        Optional<Book> book = bookRepository.findById(id);
+        Optional<Book> book = booksRepository.findById(id);
         if (book.isPresent() && !book.get().isLent()) {
-            bookRepository.lendBook(id, reader);
+//            booksRepository.lendBook(id, reader);
         }
     }
 

@@ -3,10 +3,13 @@ package com.jsuszynski.library.repositories;
 import com.jsuszynski.library.domain.Book;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public interface BookRepository extends CrudRepository<Book, Long> {
+@Repository
+public interface BooksRepository extends CrudRepository<Book, Long> {
     public List<Book> findByTitleContainingIgnoreCase(String title);
 
     public List<Book> findByIsbnIgnoreCase(String isbn);
@@ -19,9 +22,4 @@ public interface BookRepository extends CrudRepository<Book, Long> {
 
     public void deleteById(Long id);
 
-    @Query("UPDATE books SET lent=true, lastReader = ?2 WHERE id = ?1")
-    public void lendBook(Long id, String reader);
-
-    @Query("UPDATE books SET lent=false WHERE id= ?1")
-    public void returnBook(Long id);
 }
