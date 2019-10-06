@@ -18,8 +18,7 @@ import static java.util.stream.Collectors.groupingBy;
 public class DatabaseService {
 
     @Autowired
-    private final BookRepository bookRepository;
-
+    BookRepository bookRepository;
 
     public void addBook(Book book) {
         bookRepository.save(book);
