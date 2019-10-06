@@ -62,29 +62,29 @@ public class DatabaseService {
 
     public void returnBook(Book book) {
         if (book.isLent()) {
-            Book returnedBook = book.returnedBook();
-            swapBooks(book, returnedBook);
+            book.returnBook();
+            booksRepository.save(book);
         }
     }
 
     public void lendBook(Book book, String reader) {
         if (!book.isLent()) {
-            Book lentBook = book.lentBook(reader);
-            swapBooks(book, lentBook);
+            book.lendBook(reader);
+            booksRepository.save(book);
         }
     }
 
     public void returnBookById(Long id) {
         Optional<Book> book = booksRepository.findById(id);
         if (book.isPresent() && book.get().isLent()) {
-//            booksRepository.returnBook(id);
+            booksRepository.returnBook(id);
         }
     }
 
     public void lendBookById(Long id, String reader) {
         Optional<Book> book = booksRepository.findById(id);
         if (book.isPresent() && !book.get().isLent()) {
-//            booksRepository.lendBook(id, reader);
+            booksRepository.lendBook(reader, id);
         }
     }
 

@@ -1,5 +1,7 @@
 package com.jsuszynski.library.domain;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -18,23 +20,23 @@ public class Book {
     private String lastReader;
     private Boolean lent;
     private LocalDate lastLending;
-
+    private String category;
     public Book() {
     }
 
-    public Book(String title, String author) {
+    public Book(String title, String isbn) {
         this.title = title;
-        this.author = author;
+        this.isbn = isbn;
     }
 
-    public Book(Long id, String title, String author, String isbn, String lastReader, LocalDate lastLending, Boolean lent) {
-        this.id = id;
+    public Book(String title, String author, String isbn, String lastReader, Boolean lent, LocalDate lastLending, String category) {
         this.title = title;
         this.author = author;
         this.isbn = isbn;
         this.lastReader = lastReader;
-        this.lastLending = lastLending;
         this.lent = lent;
+        this.lastLending = lastLending;
+        this.category = category;
     }
 
     public Boolean isLent() {
@@ -61,11 +63,14 @@ public class Book {
         return lastLending;
     }
 
-    public Book lentBook(String reader) {
-        return new Book(this.id, this.title, this.author, this.isbn, reader, LocalDate.now(), true);
+    public Book lendBook(String reader) {
+        this.lent = true;
+        this.lastReader = reader;
+        return this;
     }
 
-    public Book returnedBook() {
-        return new Book(this.id, this.title, this.author, this.isbn, this.lastReader, this.lastLending, false);
+    public Book returnBook() {
+        this.lent = false;
+        return this;
     }
 }
