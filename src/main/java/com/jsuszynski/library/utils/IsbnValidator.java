@@ -1,4 +1,4 @@
-package com.jsuszynski.library.books;
+package com.jsuszynski.library.utils;
 
 public class IsbnValidator {
 

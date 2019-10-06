@@ -1,15 +1,16 @@
-package com.jsuszynski.library.books;
+package com.jsuszynski.library.domain;
 
 import java.time.LocalDate;
 
 public class BookBuilder {
 
+    private Long id;
     private String title;
     private String author;
     private String isbn;
     private String lastReader;
-    private Boolean lent;
-    private LocalDate lastLending;
+    private Boolean lent = false;
+    private LocalDate lastLending = LocalDate.EPOCH;
 
     public BookBuilder withTitle(String title) {
         this.title = title;
@@ -42,7 +43,7 @@ public class BookBuilder {
     }
 
     public Book buildNewBook() {
-        return new Book(title, author, isbn, lastReader, LocalDate.EPOCH, false);
+        return new Book(id, title, author, isbn, lastReader, lastLending, lent);
     }
 
 }

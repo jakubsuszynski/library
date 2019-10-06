@@ -1,15 +1,11 @@
 package com.jsuszynski.library;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
 public class Main {
-
-
     public static void main(String[] args) {
-        //default path is "resources/file.json"
-        try {
-            String path = args[0];
-            new LibraryApp().run(path);
-        } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("Podaj ścieżkę do pliku w parametrze uruchamiania.");
-        }
+        SpringApplication.run(Main.class, args);
     }
 }
