@@ -1,7 +1,5 @@
 package com.jsuszynski.library.domain;
 
-import org.hibernate.annotations.Type;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -21,6 +19,7 @@ public class Book {
     private Boolean lent;
     private LocalDate lastLending;
     private String category;
+
     public Book() {
     }
 
@@ -61,6 +60,14 @@ public class Book {
 
     public LocalDate getLastLending() {
         return lastLending;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public Boolean getLent() {
+        return lent;
     }
 
     public Book lendBook(String reader) {

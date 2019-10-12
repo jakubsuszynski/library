@@ -143,18 +143,33 @@ footer {
   letter-spacing: -.05rem;
 }
 
-#searchBox {
+.whiteBox {
   margin-top: 10vh;
   background-color: rgba(white, 0.7);
   border-radius: 10px;
   padding: 40px 0;
   display: flex;
+
   div {
     margin-left: auto;
     margin-right: auto;
   }
 }
 
+#results {
+  list-style: none;
+  padding: 0;
+
+  .bookResult {
+    .whiteBox {
+      margin-top: 4vh;
+    }
+  }
+}
+
+#cardDeck {
+  margin-top: 8vh;
+}
 
 /* RESPONSIVE CSS */
 
@@ -173,19 +188,13 @@ footer {
   .featurette-heading {
     font-size: 50px;
   }
-  #searchBox {
+  .whiteBox {
 
     #searchInput {
       height: 50px;
       width: 50vw;
       font-size: 20pt;
     }
-  }
-}
-
-@media (min-width: 62em) {
-  .featurette-heading {
-    margin-top: 7rem;
   }
 }
 

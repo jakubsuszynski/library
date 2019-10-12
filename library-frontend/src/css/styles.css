@@ -107,15 +107,24 @@ footer a:hover {
   line-height: 1;
   letter-spacing: -.05rem; }
 
-#searchBox {
+.whiteBox {
   margin-top: 10vh;
   background-color: rgba(255, 255, 255, 0.7);
   border-radius: 10px;
   padding: 40px 0;
   display: flex; }
-  #searchBox div {
+  .whiteBox div {
     margin-left: auto;
     margin-right: auto; }
+
+#results {
+  list-style: none;
+  padding: 0; }
+  #results .bookResult .whiteBox {
+    margin-top: 4vh; }
+
+#cardDeck {
+  margin-top: 8vh; }
 
 /* RESPONSIVE CSS */
 @media (min-width: 40em) {
@@ -128,14 +137,10 @@ footer a:hover {
       line-height: 1.4; }
   .featurette-heading {
     font-size: 50px; }
-  #searchBox #searchInput {
+  .whiteBox #searchInput {
     height: 50px;
     width: 50vw;
     font-size: 20pt; } }
-
-@media (min-width: 62em) {
-  .featurette-heading {
-    margin-top: 7rem; } }
 
 html {
   scroll-behavior: smooth; }
