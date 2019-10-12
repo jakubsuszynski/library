@@ -1,14 +1,12 @@
 package com.jsuszynski.library.services;
 
-import com.jsuszynski.library.repositories.BooksRepository;
 import com.jsuszynski.library.domain.Book;
+import com.jsuszynski.library.repositories.BooksRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.counting;
@@ -86,6 +84,13 @@ public class DatabaseService {
         if (book.isPresent() && !book.get().isLent()) {
             booksRepository.lendBook(reader, id);
         }
+    }
+
+    public Set<Book> findBookByAnything(String arg) {
+        Set<Book> books = new HashSet<>(booksRepository.findByAuthorContainingIgnoreCase(arg));
+        books.addAll(booksRepository.findByIsbnIgnoreCase(arg));
+        books.addAll(booksRepository.findByTitleContainingIgnoreCase(arg));
+        return books;
     }
 
     private void swapBooks(Book toDelete, Book toPut) {

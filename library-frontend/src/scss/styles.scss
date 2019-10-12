@@ -3,10 +3,12 @@
 $bg-color: #E0D5C7;
 $nav-color: #312d2f;
 body {
-  background: $bg-color;
+  //background: $bg-color;
   padding-top: 3rem;
   padding-bottom: 3rem;
   color: #5a5a5a;
+  background-image: linear-gradient(90deg, #E6DDD2, $bg-color);
+  min-height: 100%;
 }
 
 .nav-bg {
@@ -35,6 +37,35 @@ body {
   transition: color 0.5s;
 }
 
+.icon-background {
+  height: 150px;
+  background-color: #312d2f;
+  width: 150px;
+  margin: 10px auto;
+  border-radius: 100px;
+
+  img {
+    height: 80px;
+    margin: 35px auto auto auto;
+  }
+}
+
+footer {
+  a {
+    color: #5a5a5a;
+    transition: color 0.5s;
+  }
+
+  a:hover {
+    color: $nav-color;
+    text-decoration: none;
+  }
+}
+
+.desc-fixed {
+  height: 120px;
+}
+
 @media (min-width: 768px) {
   .bd-placeholder-img-lg {
     font-size: 3.5rem;
@@ -45,12 +76,10 @@ body {
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */
 
-/* Carousel base class */
 .carousel {
   margin-bottom: 4rem;
 }
 
-/* Declare heights because of positioning of img element */
 .carousel-item {
   height: 25rem;
   background-attachment: fixed;
@@ -114,20 +143,43 @@ body {
   letter-spacing: -.05rem;
 }
 
+#searchBox {
+  margin-top: 10vh;
+  background-color: rgba(white, 0.7);
+  border-radius: 10px;
+  padding: 40px 0;
+  display: flex;
+  div {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
 
-/* RESPONSIVE CSS
--------------------------------------------------- */
+
+/* RESPONSIVE CSS */
 
 @media (min-width: 40em) {
   /* Bump up size of carousel content */
-  .carousel-caption p {
-    margin-bottom: 1.25rem;
-    font-size: 1.25rem;
-    line-height: 1.4;
+  .carousel-caption {
+    text-shadow: 1px 1px 3px black;
+
+    p {
+      margin-bottom: 1.25rem;
+      font-size: 1.25rem;
+      line-height: 1.4;
+    }
   }
 
   .featurette-heading {
     font-size: 50px;
+  }
+  #searchBox {
+
+    #searchInput {
+      height: 50px;
+      width: 50vw;
+      font-size: 20pt;
+    }
   }
 }
 
@@ -139,4 +191,33 @@ body {
 
 html {
   scroll-behavior: smooth;
+}
+
+input, label {
+  display: block;
+}
+
+input::-webkit-input-placeholder {
+  padding-left: 1vw;
+  font-family: 'Raleway', sans-serif;
+}
+
+::-moz-placeholder {
+  padding-left: 1vw;
+  font-family: 'Raleway', sans-serif;
+}
+
+:-ms-input-placeholder {
+  padding-left: 1vw;
+  font-family: 'Raleway', sans-serif;
+}
+
+::-webkit-input-placeholder {
+  padding-left: 1vw;
+  font-family: 'Raleway', sans-serif;
+}
+
+::placeholder {
+  padding-left: 1vw;
+  font-family: 'Raleway', sans-serif;
 }

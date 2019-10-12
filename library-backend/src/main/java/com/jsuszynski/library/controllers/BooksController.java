@@ -6,13 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
+@CrossOrigin
 @RestController
 public class BooksController {
     @Autowired
     private DatabaseService databaseService;
 
-    @CrossOrigin
     @GetMapping("/all")
     public List<Book> returnAllBooks() {
         return databaseService.getAllBooks();
@@ -28,6 +29,10 @@ public class BooksController {
         databaseService.deleteBook(book);
     }
 
-
+    @GetMapping("/findAny")
+    public Set<Book> findAny(@RequestParam String arg) throws InterruptedException {
+        Thread.sleep(300);
+        return databaseService.findBookByAnything(arg);
+    }
 
 }
