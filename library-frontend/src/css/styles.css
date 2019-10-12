@@ -1,54 +1,40 @@
-@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
-
-$bg-color: #E0D5C7;
-$nav-color: #312d2f;
+@import url("https://fonts.googleapis.com/css?family=Raleway&display=swap");
 body {
-  background: $bg-color;
+  background: #E0D5C7;
   padding-top: 3rem;
   padding-bottom: 3rem;
-  color: #5a5a5a;
-}
+  color: #5a5a5a; }
 
 .nav-bg {
-  background: $nav-color;
-}
+  background: #312d2f; }
 
 .navbar-brand {
   font-size: 2rem;
-  font-family: 'Raleway', sans-serif;
-}
+  font-family: 'Raleway', sans-serif; }
 
 .login-button {
   color: white;
   padding: 10px;
   border: white 1px solid;
-  transition: color, border 0.5s
-}
+  transition: color, border 0.5s; }
 
 .login-button:hover {
   color: lightgrey;
   border: lightgrey 1px solid;
-  text-decoration: none;
-}
+  text-decoration: none; }
 
 .nav-link {
-  transition: color 0.5s;
-}
+  transition: color 0.5s; }
 
 @media (min-width: 768px) {
   .bd-placeholder-img-lg {
-    font-size: 3.5rem;
-  }
-}
-
+    font-size: 3.5rem; } }
 
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */
-
 /* Carousel base class */
 .carousel {
-  margin-bottom: 4rem;
-}
+  margin-bottom: 4rem; }
 
 /* Declare heights because of positioning of img element */
 .carousel-item {
@@ -56,87 +42,65 @@ body {
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
-}
+  background-size: cover; }
 
 .carousel-first {
-  background-image: url("../assets/background.jpg");
-}
+  background-image: url("../assets/background.jpg"); }
 
 .carousel-second {
   background-image: url("../assets/background2.jpg");
-  opacity: 0.8;
-}
+  opacity: 0.8; }
 
 .carousel-third {
-  background-image: url("../assets/background3.jpg");
-}
+  background-image: url("../assets/background3.jpg"); }
 
 .carousel-item > img {
   position: absolute;
   top: 0;
   left: 0;
   min-width: 100%;
-  height: 32rem;
-}
-
+  height: 32rem; }
 
 /* MARKETING CONTENT
 -------------------------------------------------- */
-
 /* Center align the text within the three columns below the carousel */
 .marketing .col-lg-4 {
   margin-bottom: 1.5rem;
-  text-align: center;
-}
+  text-align: center; }
 
 .marketing h2 {
-  font-weight: 400;
-}
+  font-weight: 400; }
 
 .marketing .col-lg-4 p {
   margin-right: .75rem;
-  margin-left: .75rem;
-}
-
+  margin-left: .75rem; }
 
 /* Featurettes
 ------------------------- */
-
 .featurette-divider {
-  margin: 5rem 0; /* Space out the Bootstrap <hr> more */
-}
+  margin: 5rem 0;
+  /* Space out the Bootstrap <hr> more */ }
 
 /* Thin out the marketing headings */
 .featurette-heading {
   font-weight: 300;
   line-height: 1;
-  letter-spacing: -.05rem;
-}
-
+  letter-spacing: -.05rem; }
 
 /* RESPONSIVE CSS
 -------------------------------------------------- */
-
 @media (min-width: 40em) {
   /* Bump up size of carousel content */
   .carousel-caption p {
     margin-bottom: 1.25rem;
     font-size: 1.25rem;
-    line-height: 1.4;
-  }
-
+    line-height: 1.4; }
   .featurette-heading {
-    font-size: 50px;
-  }
-}
+    font-size: 50px; } }
 
 @media (min-width: 62em) {
   .featurette-heading {
-    margin-top: 7rem;
-  }
-}
+    margin-top: 7rem; } }
 
 html {
-  scroll-behavior: smooth;
-}
+  scroll-behavior: smooth; }
