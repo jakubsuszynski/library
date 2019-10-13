@@ -1,16 +1,17 @@
-$("#searchButton").click(() => {
-    let query = $("#searchInput").val();
-    let resultsContainer = $("#resultsContainer");
+$(function () {
     let spinner = '<div id="loadingSpinner" style="position: absolute; top: 50%; left: 50%" class="spinner-border ml-auto" role="status" aria-hidden="true"></div>';
     $('#searchBox').append(spinner);
     let spinnerElement = $('#loadingSpinner');
+    let navigation = $('#navigation');
+    let resultsContainer = $("#resultsContainer");
     $.ajax({
         type: 'get',
-        url: 'http://localhost:8080/findAny',
-        data: {arg: query},
+        url: 'http://localhost:8080/all',
         dataType: 'json',
     })
         .done((data) => {
+           Array.from(new Set(data.map(i => i.category))).forEach(i => navigation.append(navigation.append('<a class="nav-link" href="#">' + i + '</a>')));
+
             resultsContainer.empty();
             resultsContainer.append(
                 '<div id="cardDeck" class="card-columns"></div>'
@@ -30,7 +31,7 @@ $("#searchButton").click(() => {
             spinnerElement.remove();
         });
 });
-
-$( "body" ).click(function( event ) {
-    console.log( "clicked: " + event.target.nodeName );
+$( "#navigation" ).on('click', 'a', function( event ) {
+    console.log( "clicked: " + $(this).text() );
+    event.preventDefault();
 });

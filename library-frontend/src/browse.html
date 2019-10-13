@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="pl">
 <head>
-    <title>Biblioteczka - szukaj</title>
+    <title>Biblioteczka - katalog</title>
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
@@ -41,14 +41,9 @@
 <main role="main">
     <div class="container">
         <div class="justify-content-center">
-            <div id="searchBox" class="whiteBox col-md-12">
-                <div>
-                    <label>Wyszukaj książkę
-                        <input type="text" id="searchInput" placeholder="tytuł, autor lub ISBN"/>
-                    </label>
-                    <button id="searchButton">Szukaj</button>
-                </div>
-            </div>
+            <nav id="navigation" class="nav flex-column" style="margin-top: 10vh">
+                <a class="nav-link" href="#">Wszystkie</a>
+            </nav>
 
             <div id="resultsContainer">
             </div>
@@ -69,7 +64,7 @@
 <script src="js/popper.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/carousel.js"></script>
-<script src="js/findBooks.js"></script>
+<script src="js/findAny.js"></script>
 
 </body>
 </html>
