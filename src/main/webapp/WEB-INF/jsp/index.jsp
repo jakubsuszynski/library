@@ -94,7 +94,7 @@
                 <h2>Znajdź książkę</h2>
                 <p class="desc-fixed">Nasza biblioteka zawiera bogaty zasób książek. Przejdź do wyszukiwarki aby sprawdzić czy
                     posiadamy poszukiwaną przez Ciebie pozycję lub czy nie jest obecnie wypożyczona</p>
-                <p><a class="btn btn-secondary" href="search.html" role="button">Szukaj &raquo</a></p>
+                <p><a class="btn btn-secondary" href="/search" role="button">Szukaj &raquo</a></p>
             </div>
 
             <div class="col-lg-4">
@@ -104,7 +104,7 @@
                 <h2>Przejrzyj katalog</h2>
                 <p class="desc-fixed">Jeśli nie wiesz co chcesz przeczytać, przejrzyj nasz katalog według kategorii. Wygodne menu pomoże ci
                     odnaleźć się w gatunkach. Poza literaturą naukową posiadamy także pokaźny zbiór beletrystyki</p>
-                <p><a class="btn btn-secondary" href="#" role="button">Katalog &raquo</a></p>
+                <p><a class="btn btn-secondary" href="/browse" role="button">Katalog &raquo</a></p>
             </div>
             <div class="col-lg-4">
                 <div class="icon-background">
@@ -113,7 +113,7 @@
                 <h2>O nas</h2>
                 <p class="desc-fixed">Jeśli chcesz dowiedzieć się o nas czegoś więcej, przejdź do sekcji "O nas". Znajdziesz tam zasady
                     wypożyczania książek, nasz adres i kontakt.</p>
-                <p><a class="btn btn-secondary" href="#" role="button">O nas &raquo;</a></p>
+                <p><a class="btn btn-secondary" href="/about" role="button">O nas &raquo;</a></p>
             </div>
         </div>
 

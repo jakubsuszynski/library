@@ -30,9 +30,9 @@ $(function () {
     })
         .done((data) => {
             allData = data;
-            Array.from(new Set(allData.map(i => i.category))).filter(i => i != null && i !== "Pozostałe").sort().forEach(i => navigation.append(navigation.append('<a><div class="m-2 shadow p-3 bg-white rounded">' + i + '</div></a>')));
+            Array.from(new Set(allData.map(i => i.category))).filter(i => i != null && i !== "Pozostałe").sort().forEach(i => navigation.append(navigation.append('<a><div class="btn btn-light m-1">' + i + '</div></a>')));
             if (data.map(i => i.category).includes(null)) {
-                navigation.append('<a><div class="m-2 shadow p-3 bg-white rounded">Pozostałe</div></a>')
+                navigation.append('<a><div class="btn btn-light m-1">Pozostałe</div></a>')
             }
             printBooks(allData);
             spinnerElement.remove();
@@ -44,7 +44,7 @@ $(function () {
 });
 
 $("#navigation").on('click', 'a', function (event) {
-    $("#navigation > a > div").css("fontWeight", "400");
+    $("#navigation > a > div").removeClass("btn-dark").addClass("btn-light");
     const cat = $(this).text().trim();
     if (chosenFilters.has(cat))
         chosenFilters.delete(cat);
@@ -70,6 +70,6 @@ $("#navigation").on('click', 'a', function (event) {
         });
         printBooks(books)
     }
-    chosenFilters.forEach(i => $('#navigation > a > div:contains(' + i + ')').css('font-weight', '900'));
+    chosenFilters.forEach(i => $('#navigation > a > div:contains(' + i + ')').removeClass("btn-light").addClass("btn-dark"));
     event.preventDefault();
 });

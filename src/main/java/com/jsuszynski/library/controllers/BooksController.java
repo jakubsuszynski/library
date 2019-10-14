@@ -31,7 +31,6 @@ public class BooksController {
 
     @GetMapping("/findAny")
     public Set<Book> findAny(@RequestParam String arg) throws InterruptedException {
-        Thread.sleep(300);
         return databaseService.findBookByAnything(arg);
     }
 

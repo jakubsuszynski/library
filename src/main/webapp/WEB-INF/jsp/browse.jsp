@@ -44,7 +44,7 @@
         <div class="justify-content-center">
             <div id="navigation" class="col-md-12 mt-5 d-flex flex-wrap">
                 <a>
-                    <div class="m-2 shadow p-3 bg-white rounded">Wszystkie</div>
+                    <div class="btn btn-dark m-1">Wszystkie</div>
                 </a>
             </div>
 

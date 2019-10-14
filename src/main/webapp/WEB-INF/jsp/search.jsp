@@ -47,7 +47,7 @@
                     <label>Wyszukaj książkę
                         <input type="text" id="searchInput" placeholder="tytuł, autor lub ISBN"/>
                     </label>
-                    <button id="searchButton">Szukaj</button>
+                    <a id="searchButton" class="btn btn-dark" style="color: white">Szukaj</a>
                 </div>
             </div>
 
