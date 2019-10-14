@@ -33,20 +33,20 @@ body {
   width: 150px;
   margin: 10px auto;
   border-radius: 100px; }
-  .icon-background img {
-    height: 80px;
-    margin: 35px auto auto auto; }
-
-footer a {
-  color: #5a5a5a;
-  transition: color 0.5s; }
-
-footer a:hover {
-  color: #312d2f;
-  text-decoration: none; }
+.icon-background img {
+  height: 80px;
+  margin: 35px auto auto auto; }
 
 .desc-fixed {
   height: 120px; }
+
+a {
+  color: #5a5a5a;
+  transition: color 0.5s; }
+
+a:hover {
+  color: #312d2f;
+  text-decoration: none; }
 
 @media (min-width: 768px) {
   .bd-placeholder-img-lg {
@@ -113,15 +113,15 @@ footer a:hover {
   border-radius: 10px;
   padding: 40px 0;
   display: flex; }
-  .whiteBox div {
-    margin-left: auto;
-    margin-right: auto; }
+.whiteBox div {
+  margin-left: auto;
+  margin-right: auto; }
 
 #results {
   list-style: none;
   padding: 0; }
-  #results .bookResult .whiteBox {
-    margin-top: 4vh; }
+#results .bookResult .whiteBox {
+  margin-top: 4vh; }
 
 #cardDeck {
   margin-top: 8vh; }
@@ -131,10 +131,10 @@ footer a:hover {
   /* Bump up size of carousel content */
   .carousel-caption {
     text-shadow: 1px 1px 3px black; }
-    .carousel-caption p {
-      margin-bottom: 1.25rem;
-      font-size: 1.25rem;
-      line-height: 1.4; }
+  .carousel-caption p {
+    margin-bottom: 1.25rem;
+    font-size: 1.25rem;
+    line-height: 1.4; }
   .featurette-heading {
     font-size: 50px; }
   .whiteBox #searchInput {

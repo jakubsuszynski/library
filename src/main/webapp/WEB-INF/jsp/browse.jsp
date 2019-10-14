@@ -15,7 +15,7 @@
 <body>
 <header>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top nav-bg">
-        <a class="navbar-brand" href="/index.html">LibSys</a>
+        <a class="navbar-brand" href="/">LibSys</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -23,13 +23,13 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/search.html">Wyszukaj</a>
+                    <a class="nav-link" href="/search">Wyszukaj</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/browse.html">Katalog</a>
+                    <a class="nav-link" href="/browse">Katalog</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/about.html">O nas</a>
+                    <a class="nav-link" href="/about">O nas</a>
                 </li>
             </ul>
             <div>
@@ -42,9 +42,11 @@
 <main role="main">
     <div class="container">
         <div class="justify-content-center">
-            <nav id="navigation" class="nav flex-column" style="margin-top: 10vh">
-                <a class="nav-link" href="#">Wszystkie</a>
-            </nav>
+            <div class="whiteBox col-md-12">
+                <nav id="navigation" class="nav flex-column">
+                    <a class="nav-link" href="#">Wszystkie</a>
+                </nav>
+            </div>
 
             <div id="resultsContainer">
             </div>
@@ -64,8 +66,7 @@
 <script src="js/jquery.min.js"></script>
 <script src="js/popper.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
-<script src="js/carousel.js"></script>
-<script src="js/findAny.js"></script>
+<script src="js/findAll.js"></script>
 
 </body>
 </html>
