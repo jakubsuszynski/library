@@ -27,6 +27,11 @@ body {
 .nav-link {
   transition: color 0.5s; }
 
+#navigation {
+  padding: 0; }
+  #navigation a {
+    display: block; }
+
 .icon-background {
   height: 150px;
   background-color: #312d2f;
@@ -37,16 +42,19 @@ body {
     height: 80px;
     margin: 35px auto auto auto; }
 
-footer a {
-  color: #5a5a5a;
-  transition: color 0.5s; }
-
-footer a:hover {
-  color: #312d2f;
-  text-decoration: none; }
+.feature-img {
+  width: 100%; }
 
 .desc-fixed {
   height: 120px; }
+
+a {
+  color: #5a5a5a;
+  transition: color 0.5s; }
+
+a:hover {
+  color: #312d2f;
+  text-decoration: none; }
 
 @media (min-width: 768px) {
   .bd-placeholder-img-lg {
@@ -107,21 +115,9 @@ footer a:hover {
   line-height: 1;
   letter-spacing: -.05rem; }
 
-.whiteBox {
-  margin-top: 10vh;
-  background-color: rgba(255, 255, 255, 0.7);
-  border-radius: 10px;
-  padding: 40px 0;
-  display: flex; }
-  .whiteBox div {
-    margin-left: auto;
-    margin-right: auto; }
-
 #results {
   list-style: none;
   padding: 0; }
-  #results .bookResult .whiteBox {
-    margin-top: 4vh; }
 
 #cardDeck {
   margin-top: 8vh; }
