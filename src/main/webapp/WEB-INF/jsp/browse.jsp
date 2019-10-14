@@ -42,10 +42,10 @@
 <main role="main">
     <div class="container">
         <div class="justify-content-center">
-            <div class="whiteBox col-md-12">
-                <nav id="navigation" class="nav flex-column">
-                    <a class="nav-link" href="#">Wszystkie</a>
-                </nav>
+            <div id="navigation" class="col-md-12 mt-5 d-flex flex-wrap">
+                <a>
+                    <div class="m-2 shadow p-3 bg-white rounded">Wszystkie</div>
+                </a>
             </div>
 
             <div id="resultsContainer">

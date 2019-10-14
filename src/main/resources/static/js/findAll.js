@@ -1,5 +1,6 @@
 let allData;
 let resultsContainer = $("#resultsContainer");
+let chosenFilters = new Set();
 
 function printBooks(data) {
     resultsContainer.empty();
@@ -7,13 +8,13 @@ function printBooks(data) {
         '<div id="cardDeck" class="card-columns"></div>'
     );
     let cardDeck = $("#cardDeck");
-    data.forEach(i => cardDeck.append('<div class="card" >' +
+    data.forEach(i => cardDeck.append('<div class="card shadow" >' +
         '<div class="card-body"><h5 class="card-title"><b>' + i.title + '</b></h5> ' +
         '<p class="card-text">' + (i.description ? i.description : '') + '</p><ul class="list-group list-group-flush">' +
         '    <li class="list-group-item"><b>Autor:</b> ' + i.author + '</li>\n' +
-        '    <li class="list-group-item"><b>Gatunek:</b> ' + i.category + '</li>\n' +
+        '    <li class="list-group-item"><b>Gatunek:</b> ' + (i.category === null ? "Pozostałe" : i.category) + '</li>\n' +
         '    <li class="list-group-item"><b>ISBN:</b> ' + i.isbn + '</li>\n' +
-        '    <li class="list-group-item"><b>Dostępność:</b> ' + (i.lent ? 'Tak' : 'Nie') + '</li>\n' + '  </ul> </div>'));
+        '    <li class="list-group-item"><b>Dostępność:</b> ' + (i.lent ? 'Nie' : 'Tak') + '</li>\n' + '  </ul> </div>'));
 }
 
 $(function () {
@@ -24,12 +25,15 @@ $(function () {
 
     $.ajax({
         type: 'get',
-        url: '/all',
+        url: 'http://localhost:8080/all',
         dataType: 'json',
     })
         .done((data) => {
             allData = data;
-            Array.from(new Set(allData.map(i => i.category))).map(i => i === null ? "Pozostałe" : i).forEach(i => navigation.append(navigation.append('<a class="nav-link" href="#">' + i + '</a>')));
+            Array.from(new Set(allData.map(i => i.category))).filter(i => i != null && i !== "Pozostałe").sort().forEach(i => navigation.append(navigation.append('<a><div class="m-2 shadow p-3 bg-white rounded">' + i + '</div></a>')));
+            if (data.map(i => i.category).includes(null)) {
+                navigation.append('<a><div class="m-2 shadow p-3 bg-white rounded">Pozostałe</div></a>')
+            }
             printBooks(allData);
             spinnerElement.remove();
         })
@@ -38,13 +42,34 @@ $(function () {
             spinnerElement.remove();
         });
 });
+
 $("#navigation").on('click', 'a', function (event) {
-    $("#navigation > a").css("fontWeight", "400");
-    if ($(this).text() === "Wszystkie") {
+    $("#navigation > a > div").css("fontWeight", "400");
+    const cat = $(this).text().trim();
+    if (chosenFilters.has(cat))
+        chosenFilters.delete(cat);
+    else {
+        chosenFilters.add(cat);
+    }
+    if (cat === "Wszystkie" && chosenFilters.size > 0) {
+        chosenFilters = new Set(["Wszystkie"])
+    }
+    if (chosenFilters.size === 0) {
+        chosenFilters.add("Wszystkie")
+    } else if (chosenFilters.size > 1) {
+        chosenFilters.delete("Wszystkie")
+    }
+
+    if (chosenFilters.has("Wszystkie")) {
         printBooks(allData)
     } else {
-        printBooks(allData.filter(i => i.category === ($(this).text() === "Pozostałe" ? null : $(this).text())));
+        let books = new Set();
+        chosenFilters.forEach(filter => {
+            let parsedFilter = filter === "Pozostałe" ? null : filter;
+            allData.filter(book => book.category === parsedFilter).forEach(book => books.add(book))
+        });
+        printBooks(books)
     }
-    $(this)[0].style.fontWeight = "900";
+    chosenFilters.forEach(i => $('#navigation > a > div:contains(' + i + ')').css('font-weight', '900'));
     event.preventDefault();
 });

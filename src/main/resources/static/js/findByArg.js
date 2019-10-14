@@ -5,13 +5,13 @@ function printFetchedBooks(data) {
         '<div id="cardDeck" class="card-columns"></div>'
     );
     let cardDeck = $("#cardDeck");
-    data.forEach(i => cardDeck.append('<div class="card" >' +
+    data.forEach(i => cardDeck.append('<div class="card shadow" >' +
         '<div class="card-body"><h5 class="card-title"><b>' + i.title + '</b></h5> ' +
         '<p class="card-text">' + (i.description ? i.description : '') + '</p><ul class="list-group list-group-flush">' +
         '    <li class="list-group-item"><b>Autor:</b> ' + i.author + '</li>\n' +
         '    <li class="list-group-item"><b>Gatunek:</b> ' + i.category + '</li>\n' +
         '    <li class="list-group-item"><b>ISBN:</b> ' + i.isbn + '</li>\n' +
-        '    <li class="list-group-item"><b>Dostępność:</b> ' + (i.lent ? 'Tak' : 'Nie') + '</li>\n' + '  </ul> </div>'));
+        '    <li class="list-group-item"><b>Dostępność:</b> ' + (i.lent ? 'Nie' : 'Tak') + '</li>\n' + '  </ul> </div>'));
 }
 
 $("#searchButton").click(() => {
@@ -21,7 +21,7 @@ $("#searchButton").click(() => {
     let spinnerElement = $('#loadingSpinner');
     $.ajax({
         type: 'get',
-        url: '/findAny',
+        url: 'http://localhost:8080/findAny',
         data: {arg: query},
         dataType: 'json',
     })

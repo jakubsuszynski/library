@@ -117,9 +117,6 @@
             </div>
         </div>
 
-
-        <!-- START THE FEATURETTES -->
-
         <hr class="featurette-divider">
 
         <div class="row featurette">
@@ -131,7 +128,7 @@
                     Sprzęt sprzyja prowadzeniu prezentacji oraz rozmów na odległość</p>
             </div>
             <div class="col-md-5">
-                <img src="assets/room.jpg" style="width: 100% "/>
+                <img class="feature-img" src="assets/room.jpg"/>
             </div>
         </div>
 
@@ -142,10 +139,10 @@
                 <h2 class="featurette-heading">Sale komputerowe. <span
                         class="text-muted">Od windowsa, przez MacBooki do Ubuntu</span></h2>
                 <p class="lead">Dla czytelników udostępniamy również sale komputerowe ze sprzętem najnowszej generacji.
-                Wentylacja i klimatyczne oświetlenie, a także ergonomiczne stanowiska pracy sprzyjają skupieniu i przyswajaniu wiedzy</p>
+                    Wentylacja i klimatyczne oświetlenie, a także ergonomiczne stanowiska pracy sprzyjają skupieniu i przyswajaniu wiedzy</p>
             </div>
             <div class="col-md-5 order-md-1">
-                <img src="assets/computerLab.jpg" style="width: 100%"/>
+                <img class="feature-img" src="assets/computerLab.jpg"/>
             </div>
         </div>
 
