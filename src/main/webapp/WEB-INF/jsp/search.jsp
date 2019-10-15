@@ -42,7 +42,7 @@
 <main role="main">
     <div class="container">
         <div class="justify-content-center">
-            <div id="searchBox" class="whiteBox shadow p-5 mt-5 bg-white rounded col-md-12">
+            <div id="searchBox" class="whiteBox shadow p-md-5 p-sm-2 mt-5 bg-white rounded col-md-12">
                 <div>
                     <label>Wyszukaj książkę
                         <input type="text" id="searchInput" placeholder="tytuł, autor lub ISBN"/>
@@ -51,10 +51,7 @@
                 </div>
             </div>
 
-            <div id="resultsContainer">
-            </div>
-
-
+                <div id="resultsContainer" class="whiteBox shadow mt-5 bg-white rounded col-md-12"></div>
             <hr class="featurette-divider">
 
 

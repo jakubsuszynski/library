@@ -1,20 +1,33 @@
 let allData;
-let resultsContainer = $("#resultsContainer");
+
 let chosenFilters = new Set();
 
 function printBooks(data) {
+    let resultsContainer = $("#resultsContainer");
     resultsContainer.empty();
-    resultsContainer.append(
-        '<div id="cardDeck" class="card-columns"></div>'
-    );
-    let cardDeck = $("#cardDeck");
-    data.forEach(i => cardDeck.append('<div class="card shadow" >' +
-        '<div class="card-body"><h5 class="card-title"><b>' + i.title + '</b></h5> ' +
-        '<p class="card-text">' + (i.description ? i.description : '') + '</p><ul class="list-group list-group-flush">' +
-        '    <li class="list-group-item"><b>Autor:</b> ' + i.author + '</li>\n' +
-        '    <li class="list-group-item"><b>Gatunek:</b> ' + (i.category === null ? "Pozostałe" : i.category) + '</li>\n' +
-        '    <li class="list-group-item"><b>ISBN:</b> ' + i.isbn + '</li>\n' +
-        '    <li class="list-group-item"><b>Dostępność:</b> ' + (i.lent ? 'Nie' : 'Tak') + '</li>\n' + '  </ul> </div>'));
+    resultsContainer.append('\n' +
+        '            <table class=" table table-striped table-responsive-sm table-borderless">\n' +
+        '                <thead class="thead-dark">\n' +
+        '                <tr>\n' +
+        '                    <th scope="col">Tytuł</th>\n' +
+        '                    <th scope="col">Autor</th>\n' +
+        '                    <th scope="col">Gatunek</th>\n' +
+        '                    <th scope="col">ISBN</th>\n' +
+        '                    <th scope="col">Dostępność</th>\n' +
+        '                </tr>\n' +
+        '                </thead>\n' +
+        '                <tbody id="tableRows">\n' +
+        '                </tbody>\n' +
+        '            </table>');
+    let tableRows = $("#tableRows");
+    tableRows.empty();
+    data.forEach(i => tableRows.append(
+        '<tr><td>' + i.title + '</td>' +
+        '<td>' + i.author + '</td>' +
+        '<td>' + i.category + '</td>' +
+        '<td>' + i.isbn + '</td>' +
+        '<td>' + (i.lent ? 'Nie' : 'Tak') + '</td>' +
+        '</tr>'));
 }
 
 $(function () {
@@ -30,15 +43,16 @@ $(function () {
     })
         .done((data) => {
             allData = data;
-            Array.from(new Set(allData.map(i => i.category))).filter(i => i != null && i !== "Pozostałe").sort().forEach(i => navigation.append(navigation.append('<a><div class="btn btn-light m-1">' + i + '</div></a>')));
+            Array.from(new Set(allData.map(i => i.category))).filter(i => i != null && i !== "Pozostałe").sort().forEach(i => navigation.append(navigation.append('<a><div class="btn shadow btn-light m-1">' + i + '</div></a>')));
             if (data.map(i => i.category).includes(null)) {
-                navigation.append('<a><div class="btn btn-light m-1">Pozostałe</div></a>')
+                navigation.append('<a><div class="btn shadow btn-light m-1">Pozostałe</div></a>')
             }
             printBooks(allData);
             spinnerElement.remove();
         })
         .fail((jqXHR, textStatus, errorThrown) => {
-            resultsContainer.replaceWith("WRONG REQUEST - " + jqXHR.status);
+            let tableRows = $("#tableRows");
+            tableRows.replaceWith("WRONG REQUEST - " + jqXHR.status);
             spinnerElement.remove();
         });
 });

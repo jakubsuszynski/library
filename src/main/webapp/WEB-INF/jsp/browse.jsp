@@ -44,13 +44,11 @@
         <div class="justify-content-center">
             <div id="navigation" class="col-md-12 mt-5 d-flex flex-wrap">
                 <a>
-                    <div class="btn btn-dark m-1">Wszystkie</div>
+                    <div class="btn btn-dark m-1 shadow">Wszystkie</div>
                 </a>
             </div>
 
-            <div id="resultsContainer">
-            </div>
-
+            <div id="resultsContainer" class="whiteBox shadow mt-5 bg-white rounded col-md-12 p-md-5 p-s-1" ></div>
 
             <hr class="featurette-divider">
 
