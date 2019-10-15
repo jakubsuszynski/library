@@ -33,7 +33,7 @@
                 </li>
             </ul>
             <div>
-                <a class="login-button" href="#">Zaloguj</a>
+                <a class="login-button" href="/login">Zaloguj</a>
             </div>
         </div>
     </nav>
