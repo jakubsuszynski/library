@@ -24,9 +24,14 @@ public class BooksController {
         databaseService.addBook(book);
     }
 
-    @DeleteMapping("/delete")
-    public void deleteBook(Book book) {
-        databaseService.deleteBook(book);
+    @PostMapping("/returnById")
+    public void returnById(@RequestParam String arg) {
+        databaseService.returnBookById(Long.parseLong(arg));
+    }
+
+    @DeleteMapping("/deleteById")
+    public void deleteBook(@RequestParam String arg) {
+        databaseService.deleteBookById(Long.parseLong(arg));
     }
 
     @GetMapping("/findAny")

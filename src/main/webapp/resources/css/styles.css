@@ -203,3 +203,7 @@ input::-webkit-input-placeholder {
 ::placeholder {
     font-family: 'Raleway', sans-serif;
 }
+
+.jumbotron {
+    background-color: white;
+}

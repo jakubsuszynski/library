@@ -12,14 +12,15 @@ public class Book {
     @Id
     @GeneratedValue
     private Long id;
+
     private String title;
+
     private String author;
     private String isbn;
     private String lastReader;
     private Boolean lent;
     private LocalDate lastLending;
     private String category;
-
     public Book() {
     }
 
@@ -36,6 +37,10 @@ public class Book {
         this.lent = lent;
         this.lastLending = lastLending;
         this.category = category;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public Boolean isLent() {

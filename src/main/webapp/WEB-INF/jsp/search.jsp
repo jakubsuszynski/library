@@ -33,33 +33,31 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/about">O nas</a>
                 </li>
-                <security:authorize var="loggedIn" access="isAuthenticated()"/>
-                <c:choose>
-                    <c:when test="${loggedIn}">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/lendPanel">Wypożycz/Zwróć</a>
-                        </li>
-                    </c:when>
-                </c:choose>
             </ul>
-            <div>
-                <c:choose>
-                    <c:when test="${loggedIn}">
+            <security:authorize var="loggedIn" access="isAuthenticated()"/>
+            <c:choose>
+                <c:when test="${loggedIn}">
+                    <div>
+                        <a class="btn btn-outline-light mr-3" href="/panel">Zarządzaj</a>
+                    </div>
+                    <div>
                         <form name='logout' action="/logout" method='POST'>
                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                             <button type="submit" class="btn btn-outline-light">
                                 Wyloguj
                             </button>
                         </form>
-                    </c:when>
-                    <c:otherwise>
+                    </div>
+                </c:when>
+                <c:otherwise>
+                    <div>
                         <button type="button" class="btn btn-outline-light" data-toggle="modal"
                                 data-target="#login-modal">
                             Zaloguj
                         </button>
-                    </c:otherwise>
-                </c:choose>
-            </div>
+                    </div>
+                </c:otherwise>
+            </c:choose>
         </div>
     </nav>
 </header>
@@ -97,7 +95,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Logowanie</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

@@ -58,10 +58,11 @@ public class DatabaseService {
         return booksRepository.findByAuthorContainingIgnoreCase(author);
     }
 
-    public void returnBook(Book book) {
-        if (book.isLent()) {
-            book.returnBook();
-            booksRepository.save(book);
+    public void returnBookById(Long id) {
+        Optional<Book> book = booksRepository.findById(id);
+        if (book.isPresent() && book.get().isLent()) {
+            book.get().returnBook();
+            booksRepository.save(book.get());
         }
     }
 
@@ -69,13 +70,6 @@ public class DatabaseService {
         if (!book.isLent()) {
             book.lendBook(reader);
             booksRepository.save(book);
-        }
-    }
-
-    public void returnBookById(Long id) {
-        Optional<Book> book = booksRepository.findById(id);
-        if (book.isPresent() && book.get().isLent()) {
-            booksRepository.returnBook(id);
         }
     }
 

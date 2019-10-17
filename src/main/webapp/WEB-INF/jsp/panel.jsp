@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="pl">
 <head>
-    <title>Biblioteczka - o nas</title>
+    <title>Biblioteczka - szukaj</title>
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
@@ -64,31 +64,26 @@
 
 <main role="main">
     <div class="container">
-        <div class="jumbotron mt-5">
-            <h1 class="display-4">O nas</h1>
-            <p class="lead">Biblioteka LibSys to ogromny zbiór książek dostępnych od ręki. Prowadzimy współpracę z
-                uczelniami oraz firmami.</p>
-            <hr class="my-4">
-            <p>Zapraszamy serdecznie do współpracy i skorzystania z naszych usług.</p>
-            <p>
-                <a class="btn btn-secondary" data-toggle="collapse" href="#collapseExample" role="button"
-                   aria-expanded="false" aria-controls="collapseExample">
-                    Lokalizacja
-                </a>
-            </p>
-            <div class="collapse" id="collapseExample">
-                <div class="card card-body">
-                    <p>Biblioteka mieści się przy ulicy Abrahama 3 w Gdańsku.</p>
-                    <p>Numer kontaktowy: (+48) 645 231 432</p>
-                    <p> Adres e-mail: biblioteka@libsys.pl</p>
-                    <img src="https://image.businessinsider.com/5c9542680cf9131e9a761712?width=1100&format=jpeg&auto=webp"/>
+        <div class="justify-content-center">
+            <div id="searchBox" class="whiteBox shadow p-md-5 p-sm-2 mt-5 bg-white rounded col-md-12">
+                <div>
+                    <label for="searchInput">Wyszukaj książkę do edycji</label>
+                    <input type="text" class="form-control" id="searchInput"
+                           placeholder="Tytuł, autor lub ISBN" />
+                    <p>
+                        <a id="searchButton" class="btn btn-dark mt-3" style="color: white">Szukaj</a>
                 </div>
             </div>
+
+            <div id="resultsContainer" class="whiteBox shadow mt-5 bg-white rounded col-md-12"></div>
+            <hr class="featurette-divider">
+
+
         </div>
     </div>
 
     <footer class="container">
-        <p class="float-right"><a href="#">Back to top</a></p>
+        <p class="float-right"><a href="/login">Back to top</a></p>
         <p>2019 Programowanie Aplikacji Internetowych &middot; <a href="jsuszynski.com">Jakub Suszynski</a></p>
     </footer>
 </main>
@@ -136,7 +131,7 @@
 <script src="../../resources/js/jquery.min.js"></script>
 <script src="../../resources/js/popper.min.js"></script>
 <script src="../../resources/js/bootstrap.min.js"></script>
-<script src="../../resources/js/findAll.js"></script>
+<script src="../../resources/js/findToManage.js"></script>
 
 </body>
 </html>

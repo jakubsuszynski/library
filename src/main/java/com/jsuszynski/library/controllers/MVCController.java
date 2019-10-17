@@ -31,4 +31,9 @@ public class MVCController {
     public String login() {
         return "redirect:/";
     }
+
+    @GetMapping("/panel")
+    public String panel() {
+        return "panel";
+    }
 }
