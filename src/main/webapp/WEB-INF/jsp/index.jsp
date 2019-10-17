@@ -1,4 +1,5 @@
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html class="no-js" lang="pl">
 <head>
@@ -8,8 +9,8 @@
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,800">
     <link rel='stylesheet' href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="../../resources/css/bootstrap.css">
+    <link rel="stylesheet" href="../../resources/css/styles.css">
 </head>
 
 <body>
@@ -89,7 +90,7 @@
         <div class="row">
             <div class="col-lg-4">
                 <div class="icon-background">
-                    <img src="assets/search.svg" alt=""/>
+                    <img src="../../resources/assets/search.svg" alt=""/>
                 </div>
                 <h2>Znajdź książkę</h2>
                 <p class="desc-fixed">Nasza biblioteka zawiera bogaty zasób książek. Przejdź do wyszukiwarki aby sprawdzić czy
@@ -99,7 +100,7 @@
 
             <div class="col-lg-4">
                 <div class="icon-background">
-                    <img src="assets/bookshelf.svg" alt=""/>
+                    <img src="../../resources/assets/bookshelf.svg" alt=""/>
                 </div>
                 <h2>Przejrzyj katalog</h2>
                 <p class="desc-fixed">Jeśli nie wiesz co chcesz przeczytać, przejrzyj nasz katalog według kategorii. Wygodne menu pomoże ci
@@ -108,7 +109,7 @@
             </div>
             <div class="col-lg-4">
                 <div class="icon-background">
-                    <img src="assets/faq.svg" alt=""/>
+                    <img src="../../resources/assets/faq.svg" alt=""/>
                 </div>
                 <h2>O nas</h2>
                 <p class="desc-fixed">Jeśli chcesz dowiedzieć się o nas czegoś więcej, przejdź do sekcji "O nas". Znajdziesz tam zasady
@@ -128,7 +129,7 @@
                     Sprzęt sprzyja prowadzeniu prezentacji oraz rozmów na odległość</p>
             </div>
             <div class="col-md-5">
-                <img class="feature-img" src="assets/room.jpg"/>
+                <img class="feature-img" src="../../resources/assets/room.jpg"/>
             </div>
         </div>
 
@@ -142,7 +143,7 @@
                     Wentylacja i klimatyczne oświetlenie, a także ergonomiczne stanowiska pracy sprzyjają skupieniu i przyswajaniu wiedzy</p>
             </div>
             <div class="col-md-5 order-md-1">
-                <img class="feature-img" src="assets/computerLab.jpg"/>
+                <img class="feature-img" src="../../resources/assets/computerLab.jpg"/>
             </div>
         </div>
 
@@ -157,11 +158,11 @@
         <p>2019 Programowanie Aplikacji Internetowych &middot; <a href="jsuszynski.com">Jakub Suszynski</a></p>
     </footer>
 </main>
-<script src="js/jquery.min.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/carousel.js"></script>
-<script src="js/findByArg.js"></script>
+<script src="../../resources/js/jquery.min.js"></script>
+<script src="../../resources/js/popper.min.js"></script>
+<script src="../../resources/js/bootstrap.min.js"></script>
+<script src="../../resources/js/carousel.js"></script>
+<script src="../../resources/js/findByArg.js"></script>
 
 </body>
 </html>

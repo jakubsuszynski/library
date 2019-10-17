@@ -8,8 +8,8 @@
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,800">
     <link rel='stylesheet' href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="../../resources/css/bootstrap.css">
+    <link rel="stylesheet" href="../../resources/css/styles.css">
 </head>
 
 <body>
@@ -61,10 +61,10 @@
         <p>2019 Programowanie Aplikacji Internetowych &middot; <a href="jsuszynski.com">Jakub Suszynski</a></p>
     </footer>
 </main>
-<script src="js/jquery.min.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/findAll.js"></script>
+<script src="../../resources/js/jquery.min.js"></script>
+<script src="../../resources/js/popper.min.js"></script>
+<script src="../../resources/js/bootstrap.min.js"></script>
+<script src="../../resources/js/findAll.js"></script>
 
 </body>
 </html>
