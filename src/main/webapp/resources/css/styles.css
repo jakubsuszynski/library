@@ -185,26 +185,21 @@ input, label {
 }
 
 input::-webkit-input-placeholder {
-    padding-left: 1vw;
     font-family: 'Raleway', sans-serif;
 }
 
 ::-moz-placeholder {
-    padding-left: 1vw;
     font-family: 'Raleway', sans-serif;
 }
 
 :-ms-input-placeholder {
-    padding-left: 1vw;
     font-family: 'Raleway', sans-serif;
 }
 
 ::-webkit-input-placeholder {
-    padding-left: 1vw;
     font-family: 'Raleway', sans-serif;
 }
 
 ::placeholder {
-    padding-left: 1vw;
     font-family: 'Raleway', sans-serif;
 }

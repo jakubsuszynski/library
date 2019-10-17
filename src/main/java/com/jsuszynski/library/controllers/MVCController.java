@@ -1,6 +1,7 @@
 package com.jsuszynski.library.controllers;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -19,5 +20,15 @@ public class MVCController {
     @RequestMapping("/browse")
     public String browse() {
         return "browse";
+    }
+
+    @RequestMapping("/about")
+    public String about() {
+        return "about";
+    }
+
+    @GetMapping("/login")
+    public String login() {
+        return "redirect:/";
     }
 }
