@@ -14,19 +14,42 @@ public class Book {
     private Long id;
 
     private String title;
-
     private String author;
     private String isbn;
     private String lastReader;
-    private Boolean lent;
+    private Boolean lent = false;
     private LocalDate lastLending;
     private String category;
+
     public Book() {
     }
 
     public Book(String title, String isbn) {
         this.title = title;
         this.isbn = isbn;
+    }
+
+    public Book(String title, String author, String isbn, String category) {
+        this.title = title;
+        this.author = author;
+        this.isbn = isbn;
+        this.category = category;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public Book(String title, String author, String isbn, String lastReader, Boolean lent, LocalDate lastLending, String category) {
@@ -77,6 +100,7 @@ public class Book {
 
     public Book lendBook(String reader) {
         this.lent = true;
+        this.lastLending = LocalDate.now();
         this.lastReader = reader;
         return this;
     }

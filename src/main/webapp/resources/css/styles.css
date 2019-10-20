@@ -152,9 +152,14 @@ a:hover {
     margin-top: 8vh;
 }
 
+.actionLink {
+    font-weight: bold;
+}
+a {
+    cursor: pointer;
+}
 /* RESPONSIVE CSS */
 @media (min-width: 40em) {
-    /* Bump up size of carousel content */
     .carousel-caption {
         text-shadow: 1px 1px 3px black;
     }
@@ -170,8 +175,7 @@ a:hover {
     }
 
     .whiteBox #searchInput {
-        height: 50px;
-        width: 50vw;
+        width: 100%;
         font-size: 20pt;
     }
 }

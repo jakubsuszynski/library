@@ -19,8 +19,8 @@ public class BooksController {
         return databaseService.getAllBooks();
     }
 
-    @PostMapping("/add")
-    public void addBook(Book book) {
+    @PostMapping(value="/add", consumes = "application/json;charset=UTF-8")
+    public void addBook(@RequestBody Book book) {
         databaseService.addBook(book);
     }
 
@@ -29,13 +29,18 @@ public class BooksController {
         databaseService.returnBookById(Long.parseLong(arg));
     }
 
+    @PostMapping("/lendById")
+    public void lendById(@RequestParam String arg, @RequestParam String reader) {
+        databaseService.lendBookById(Long.parseLong(arg), reader);
+    }
+
     @DeleteMapping("/deleteById")
     public void deleteBook(@RequestParam String arg) {
         databaseService.deleteBookById(Long.parseLong(arg));
     }
 
     @GetMapping("/findAny")
-    public Set<Book> findAny(@RequestParam String arg) throws InterruptedException {
+    public Set<Book> findAny(@RequestParam String arg) {
         return databaseService.findBookByAnything(arg);
     }
 

@@ -69,9 +69,10 @@
                 <div>
                     <label for="searchInput">Wyszukaj książkę do edycji</label>
                     <input type="text" class="form-control" id="searchInput"
-                           placeholder="Tytuł, autor lub ISBN" />
-                    <p>
-                        <a id="searchButton" class="btn btn-dark mt-3" style="color: white">Szukaj</a>
+                           placeholder="Tytuł, autor lub ISBN"/>
+                    <a id="searchButton" class="btn btn-dark mt-3" style="color: white">Szukaj</a>
+                    <a id="openAddBookModalButton" class="btn btn-dark mt-3" style="color: white; float: right;" data-toggle="modal"
+                       data-target="#add-book-modal">Dodaj książkę</a>
                 </div>
             </div>
 
@@ -88,40 +89,42 @@
     </footer>
 </main>
 
-
-<!-- Login Modal -->
-<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+<!-- AddBook Modal -->
+<div class="modal fade" id="add-book-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
      aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Logowanie</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Dodaj książkę</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-
-                <c:if test="${not empty errorMessge}">
-                    <div style="color:red; font-weight: bold; margin: 30px 0px;">${errorMessge}</div>
-                </c:if>
-                <form name='login' action="/login" method='POST'>
                     <div class="form-group">
-                        <label for="username">Nazwa użytkownika</label>
-                        <input type="text" class="form-control" name="username" id="username"
-                               placeholder="Nazwa użytkownika">
+                        <label for="title">Tytuł</label>
+                        <input type="text" class="form-control" name="title" id="title"
+                               placeholder="Tytuł">
                     </div>
                     <div class="form-group">
-                        <label for="password">Hasło</label>
-                        <input type="password" class="form-control" name="password" id="password" placeholder="Hasło">
+                        <label for="author">Autor</label>
+                        <input type="text" class="form-control" name="author" id="author"
+                               placeholder="Autor">
                     </div>
-                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-
+                    <div class="form-group">
+                        <label for="isbn">ISBN</label>
+                        <input type="text" class="form-control" name="ISBN" id="isbn"
+                               placeholder="ISBN">
+                    </div>
+                    <div class="form-group">
+                        <label for="category">Gatunek</label>
+                        <input type="text" class="form-control" name="category" id="category"
+                               placeholder="Gatunek">
+                    </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cofnij</button>
-                        <button type="submit" class="btn btn-secondary" value="submit">Zaloguj</button>
+                        <button type="submit" id="addButton" class="btn btn-secondary" data-dismiss="modal" value="submit">Dodaj</button>
                     </div>
-                </form>
             </div>
         </div>
     </div>

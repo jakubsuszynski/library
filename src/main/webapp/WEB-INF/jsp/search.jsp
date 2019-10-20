@@ -70,7 +70,6 @@
                     <label for="searchInput">Wyszukaj książkę</label>
                     <input type="text" class="form-control" id="searchInput"
                            placeholder="Tytuł, autor lub ISBN" />
-                    <p>
                     <a id="searchButton" class="btn btn-dark mt-3" style="color: white">Szukaj</a>
                 </div>
             </div>
@@ -102,8 +101,9 @@
             </div>
             <div class="modal-body">
 
-                <c:if test="${not empty errorMessge}">
-                    <div style="color:red; font-weight: bold; margin: 30px 0px;">${errorMessge}</div>
+                <c:if test="${not empty message}">
+                    <div id="badLogin" class="pb-sm-2 font-weight-bold alert">${message}</div>
+                    <c:remove var="message"/>
                 </c:if>
                 <form name='login' action="/login" method='POST'>
                     <div class="form-group">
@@ -132,6 +132,6 @@
 <script src="../../resources/js/popper.min.js"></script>
 <script src="../../resources/js/bootstrap.min.js"></script>
 <script src="../../resources/js/findByArg.js"></script>
-
+<script src="../../resources/js/generic.js"></script>
 </body>
 </html>
