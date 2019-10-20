@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
@@ -23,7 +24,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/login")
+                .loginPage("/")
+                .loginProcessingUrl("/login")
+                .successHandler((req, res, auth) -> {
+                    res.sendRedirect("/");
+                })
+                .failureHandler((req, res, exc) -> {
+                    req.getSession().setAttribute("message", "Złe hasło lub login");
+                    res.sendRedirect("/");
+                })
                 .permitAll()
                 .and()
                 .logout()
@@ -39,7 +48,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         ;
 
     }
-
     @Bean
     @Override
     public UserDetailsService userDetailsService() {

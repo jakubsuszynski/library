@@ -18,7 +18,7 @@ function printFetchedBooks(data) {
         '            </table>')
     let tableRows = $("#tableRows");
     tableRows.empty();
-    data.forEach(i => tableRows.append(
+    data.sort((a, b) => a.title > b.title ? 1 : -1).forEach(i => tableRows.append(
         '<tr><td>' + i.title + '</td>' +
         '<td>' + i.author + '</td>' +
         '<td>' + i.category + '</td>' +

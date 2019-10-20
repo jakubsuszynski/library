@@ -27,10 +27,10 @@ public class MVCController {
         return "about";
     }
 
-    @GetMapping("/login")
-    public String login() {
-        return "redirect:/";
-    }
+//    @GetMapping("/login")
+//    public String login() {
+//        return "redirect:/";
+//    }
 
     @GetMapping("/panel")
     public String panel() {

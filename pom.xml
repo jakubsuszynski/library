@@ -16,6 +16,7 @@
 
     <properties>
         <java.version>1.11</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
@@ -37,7 +38,6 @@
             <artifactId>spring-security-taglibs</artifactId>
             <version>5.0.7.RELEASE</version>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>

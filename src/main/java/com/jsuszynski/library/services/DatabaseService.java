@@ -76,7 +76,8 @@ public class DatabaseService {
     public void lendBookById(Long id, String reader) {
         Optional<Book> book = booksRepository.findById(id);
         if (book.isPresent() && !book.get().isLent()) {
-            booksRepository.lendBook(reader, id);
+            book.get().lendBook(reader);
+            booksRepository.save(book.get());
         }
     }
 
