@@ -1,5 +1,5 @@
 const spinner = '<div id="loadingSpinner" style="position: absolute; top: 50%; left: 50%" class="spinner-border ml-auto" role="status" aria-hidden="true"></div>';
-
+let bookToLend;
 function returnBook(id) {
     $.ajax({
         type: 'post',
@@ -28,18 +28,23 @@ function deleteBook(id) {
         });
 }
 
-function lendBook(id) {
+function lendBook() {
+    let reader = $("#reader").val();
     $.ajax({
         type: 'post',
         url: 'http://localhost:8080/lendById',
-        data: {arg: id, reader: "xxx"},
+        data: {arg: bookToLend, reader: reader},
     })
         .done(() => {
             fetchData();
         })
         .fail((jqXHR, textStatus, errorThrown) => {
-            $("#tableRows").replaceWith("PROBLEM WITH RETURNING BOOK OCCURED - " + jqXHR.status);
+            $("#tableRows").replaceWith("PROBLEM WITH LENDING BOOK OCCURED - " + jqXHR.status);
         });
+}
+
+function prepareToLendBook(id) {
+   bookToLend = id;
 }
 
 function printFetchedBooks(data) {
@@ -70,7 +75,7 @@ function printFetchedBooks(data) {
             '<td>' + i.isbn + '</td>' +
             '<td>' + (i.lent ? 'Nie' : 'Tak') + '</td>' +
             '<td>' + i.lastReader + '</td>' +
-            '<td>' + (i.lent ? '<a class="actionLink" onclick="returnBook(' + i.id + ')">Zwróć</a>' : '<a class="actionLink" onclick="lendBook(' + i.id + ')">Wypożycz</a>') + ' / ' + '<a class="actionLink" onclick="deleteBook(' + i.id + ')">Usuń</a>' + '</td>' +
+            '<td>' + (i.lent ? '<a class="actionLink" onclick="returnBook(' + i.id + ')">Zwróć</a>' : '<a class="actionLink" data-toggle="modal" data-target="#lend-book-modal" onclick="prepareToLendBook(' + i.id + ')">Wypożycz</a>') + ' / ' + '<a class="actionLink" onclick="deleteBook(' + i.id + ')">Usuń</a>' + '</td>' +
             '</tr>'));
 }
 
@@ -100,6 +105,10 @@ $("#searchButton").click(() => {
 
 $("#addButton").click(() => {
     return addBook();
+});
+
+$("#lendButton").click(() => {
+    return lendBook();
 });
 
 function addBook() {

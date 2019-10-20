@@ -130,6 +130,32 @@
     </div>
 </div>
 
+<!-- Lend Book Modal -->
+<div class="modal fade" id="lend-book-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle1"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle1">Czytelnik</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="reader">Imię i nazwisko wypożyczającego</label>
+                    <input type="text" class="form-control" name="reader" id="reader"
+                           placeholder="Imię i nazwisko">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cofnij</button>
+                    <button type="submit" id="lendButton" class="btn btn-secondary" data-dismiss="modal" value="submit">Wypożycz</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <script src="../../resources/js/jquery.min.js"></script>
 <script src="../../resources/js/popper.min.js"></script>
